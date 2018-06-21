@@ -1,27 +1,40 @@
 <template>
-    <header>
-        <div class="container">
-            <h1>Welcome to the shop</h1>
-            <Product></Product>
-        </div>
-    </header>
+  <header>
+    <h1>Welcome to the shop</h1>
+    <div class="container">
+      <Product></Product>
+      <Basket></Basket>
+    </div>
+  </header>
 </template>
 
 <script>
-import Product from './Product.vue';
+  import Product from './Product.vue';
+  import Basket from './Basket.vue';
 
-export default {
-  name: 'ProductList',
-  components: {
-    Product,
-  },
-};
+  export default {
+    name: 'ProductList',
+    components: {
+      Product,
+      Basket
+    },
+    computed: {
+      basket(){
+        return this.$store.state.basket
+      }
+    }
+  };
 </script>
 
 <style lang="scss" scoped>
-    .container {
-        text-align: center;
-        margin: 0 auto;
-        max-width: 1200px;
-    }
+  h1 {
+    margin-bottom: 50px;
+  }
+  .container {
+    text-align: center;
+    margin: 0 auto;
+    max-width: 1200px;
+    display: flex;
+    justify-content: space-between;
+  }
 </style>

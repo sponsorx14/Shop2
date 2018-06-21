@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="product-container">
     <div
       v-for="(item) in products"
       :key="item.id"
@@ -11,28 +11,18 @@
       >
         {{ item.name }}
       </p>
-      <p
-        class="box__details-screen"
-      >
-        {{ item.details.screen }}
-      </p>
-      <p
-        class="box__details-memory"
-      >
-        {{ item.details.memory }}
-      </p>
-      <p
-        class="box__details-system"
-      >
-        {{ item.details.system }}
+
+      <p class="box__price">
+        {{ item.price }}zł
       </p>
       <p>
-        <input
-          type="text"
-          class="box__input"
-          placeholder="Qty"
-        >
-        of
+        <!--<input-->
+          <!--@keyup="getQuantity($event)"-->
+          <!--type="text"-->
+          <!--class="box__input"-->
+          <!--placeholder="Qty"-->
+        <!--&gt;-->
+        In stock:
         <span>
           {{ item.inStock }}
         </span>
@@ -40,7 +30,7 @@
       <button
         @click="addToStore(item)"
       >
-        Buy
+        Buy one
       </button>
     </div>
   </div>
@@ -48,39 +38,42 @@
 
 <script>
 
-export default {
-  name: 'Product',
-  data() {
-    return {
-      basket: {
-        name: '',
-        qty: 0,
-        totalPrice: 0,
-      },
-    };
-  },
-  computed: {
-    products() {
-      return this.$store.state.products;
+  export default {
+    name: 'Product',
+    data() {
+      return {
+        qty: 1,
+      };
     },
+    computed: {
+      products() {
+        return this.$store.state.products;
+      },
+    },
+    methods: {
+      addToStore(item) {
+        const qty = parseInt(this.qty);
+        const price = qty * item.price;
 
-
-  },
-  methods: {
-
-  },
-
-
-};
+        this.$store.commit('updateBasket',
+          {
+            name: item.name,
+            qty,
+            price: price
+          });
+      },
+      // getQuantity($event) {
+      //   this.qty = $event.target.value;
+      // }
+    },
+  };
 
 </script>
 
 <style lang="scss" scoped>
-  .container {
+  .product-container {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
+    flex-direction: column;
     .box {
       border: 2px solid #e6e6e6;
       padding: 20px;
