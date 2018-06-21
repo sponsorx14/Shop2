@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "name": "Huawei Y6 PRO LTE Dual SIM",
+    "price": 449.00,
+    "inStock": 400,
+    "image": "https://cdn.x-kom.pl/i/setup/images/prod/big/product-large,huawei-y6-pro-lte-dual-sim-bialy-306287,2017/7/pr_2017_7_11_9_53_18_663.jpg",
+    "details": {
+      "screen": "5",
+      "memory": "16 GB",
+      "system": "Android 5.1 Lollipop"
+    }
+  },
+  {
+    "id": 2,
+    "name": "Lenovo K6 Note 3/32GB Dual SIM srebrny",
+    "price": 649.00,
+    "inStock": 350,
+    "image": "https://cdn.x-kom.pl/i/setup/images/prod/big/product-large,lenovo-k6-note-332gb-dual-sim-srebrny-341781,2017/11/pr_2017_11_14_12_20_52_779_00.jpg",
+    "details": {
+      "screen": "5.5",
+      "memory": "32 GB",
+      "system": "Android 6.0 Marshmallow"
+    }
+  },
+  {
+    "id": 3,
+    "name": "Apple iPhone 8 64GB Space Gray",
+    "price": 3149.00,
+    "inStock": 100,
+    "image": "https://cdn.x-kom.pl/i/setup/images/prod/big/product-large,apple-iphone-8-64gb-space-gray-382276,2017/9/pr_2017_9_13_14_10_0_673_01.jpg",
+    "details": {
+      "screen": "4.7",
+      "memory": "64 GB",
+      "system": "iOS 11"
+    }
+  },
+  {
+    "id": 4,
+    "name": "Nokia 5 Dual SIM czarny",
+    "price": 549.00,
+    "inStock": 50,
+    "image": "https://cdn.x-kom.pl/i/setup/images/prod/big/product-large,nokia-5-dual-sim-czarny-357302,2017/7/pr_2017_7_11_9_21_15_638.jpg",
+    "details": {
+      "screen": "5.2",
+      "memory": "16 GB",
+      "system": "Android 7.1 Nougat"
+    }
+  },
+  {
+    "id": 5,
+    "name": "Honor 10 LTE Dual SIM 128 GB niebieski",
+    "price": 2049.00,
+    "inStock": 100,
+    "image": "https://cdn.x-kom.pl/i/setup/images/prod/big/product-large,honor-10-lte-dual-sim-128-gb-niebieski-428795,2018/5/pr_2018_5_9_9_50_21_827_12.jpg",
+    "details": {
+      "screen": "5.84",
+      "memory": "128 GB",
+      "system": "Android 8.1 Oreo"
+    }
+  },
+  {
+    "id": 6,
+    "name": "Xiaomi Redmi Note 5 4/64GB",
+    "price": 1049.00,
+    "inStock": 300,
+    "image": "https://cdn.x-kom.pl/i/setup/images/prod/big/product-large,xiaomi-redmi-note-5-464gb-black-429745,2018/5/pr_2018_5_10_15_17_6_838_04.jpg",
+    "details": {
+      "screen": "6",
+      "memory": "64 GB",
+      "system": "Android 8.1 Oreo"
+    }
+  }
+]
