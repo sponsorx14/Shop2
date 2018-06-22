@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="main">
     <router-link
       to="/"
       class="main__button--back"
@@ -10,8 +10,13 @@
       v-for="item in getData"
       class="box"
     >
-      <a :href="item.image" target="_blank">
-        <img :src="item.image" class="box__image" alt="">
+      <a
+        :href="item.image" target="_blank"
+      >
+        <img
+          :src="item.image"
+          class="box__image" alt=""
+        >
       </a>
       <p
         class="box__name"
@@ -63,20 +68,22 @@
         return this.$store.state.products.filter(item => item.id === routeId);
       }
     }
-
   }
 </script>
 
 <style lang="scss" scoped>
-  .main__button--back {
-    text-decoration: none;
-    border: 0;
-    background-color: #4286f4;
-    color: #fff;
-    padding: 10px 15px;
-    border-radius: 20px;
-    cursor: pointer;
-    outline: none;
+  .main {
+    margin: 30px 0;
+    &__button--back {
+      text-decoration: none;
+      border: 0;
+      background-color: #4286f4;
+      color: #fff;
+      padding: 10px 15px;
+      border-radius: 20px;
+      cursor: pointer;
+      outline: none;
+    }
   }
   .box {
     border: 2px solid #e6e6e6;

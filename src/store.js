@@ -9,15 +9,16 @@ export default new Vuex.Store({
   state: {
     products: data,
     basket: [],
-    inStock: []
+    inStock: [],
+    searchTerm: ''
   },
   mutations: {
 
-    addToBasket(state, value) {
+    addToBasketOne(state, value) {
       const multiplied = state.basket.find(item => item.name === value.name);
 
       state.products.find(item => {
-        if(item.name === value.name ){
+        if (item.name === value.name) {
           item.inStock -= 1
         }
       });
@@ -30,6 +31,31 @@ export default new Vuex.Store({
         state.basket.push(value);
       }
     },
+
+    addToBasketMore(state, value) {
+      const multiplied = state.basket.find(item => item.name === value.name);
+      const price = value.quantity * value.price;
+      const values = {
+        name: value.name,
+        quantity: value.quantity,
+        price: price
+      };
+
+      this.state.products.find(item => {
+        if (item.name === value.name) {
+          item.inStock -= value.quantity;
+        }
+      });
+
+      if (multiplied) {
+        multiplied.quantity += value.quantity;
+        multiplied.price = value.price * multiplied.quantity;
+      }
+      else {
+        state.basket.push(values);
+      }
+    },
+
     removeFromBasket(state, value) {
       const findProduct = state.basket.find(item => item.name === value.name);
 
@@ -37,7 +63,7 @@ export default new Vuex.Store({
       findProduct.price = value.price * findProduct.quantity;
 
       state.products.find(item => {
-        if(item.name === value.name ){
+        if (item.name === value.name) {
           value.quantity > 0 ? item.inStock += 1 : null;
         }
       });
@@ -49,20 +75,26 @@ export default new Vuex.Store({
     },
     removeFromBasketAll(state, value) {
       const multiplied = state.basket.find(item => item.name === value.name);
-
       multiplied.quantity = 0;
       multiplied.price = 0;
-
       state.products.find(item => {
-        if(item.name === value.name ){
-          value.quantity > 0 ? item.inStock += 1 : null;
+        if (item.name === value.name) {
+          value.quantity > 0 ? item.inStock += value.quantity : null;
         }
       });
-
     },
-
-
+    updateResult(state, value){
+      state.searchTerm = value;
+    }
   },
   actions: {},
-  getters: {},
+  getters: {
+    filterName(state) {
+      return state.products.filter(item => {
+        let itemName = item.name.toLowerCase();
+        let filteredName = state.searchTerm.toLowerCase();
+         return itemName.includes(filteredName);
+      })
+    }
+  },
 });

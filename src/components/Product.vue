@@ -1,7 +1,8 @@
 <template>
   <div class="product-container">
+    <h2> Available products: </h2>
     <div
-      v-for="item in products"
+      v-for="item in newProducts"
       :key="item.id"
       class="box"
     >
@@ -22,20 +23,16 @@
       <p class="box__price">
         {{ item.price }}zł
       </p>
-      <p>
-        <!--<input-->
-          <!--@keyup="getQuantity($event)"-->
-          <!--type="text"-->
-          <!--class="box__input"-->
-          <!--placeholder="quantity"-->
-        <!--&gt;-->
-        In stock:
-        <span>
-          {{ item.inStock }}
-        </span>
-      </p>
+
       <button
-        @click="addToBasket(item)"
+        @click="addToBasketMore(item)"
+        class="box__button"
+      >
+        Buy
+      </button>
+      <p>Or</p>
+      <button
+        @click="addToBasketOne(item)"
         class="box__button"
       >
         Buy one
@@ -50,31 +47,37 @@
     name: 'Product',
     data() {
       return {
-        quantity: 1,
+        quantity: 0,
+        inputQuantity: 1
       };
     },
     computed: {
       products() {
         return this.$store.state.products;
       },
+      newProducts(){
+        return this.$store.getters.filterName;
+      }
     },
     methods: {
-      addToBasket(item) {
-        const quantity = parseInt(this.quantity);
 
-        this.$store.commit('addToBasket',
+      addToBasketOne(item) {
+        this.$store.commit('addToBasketOne',
           {
             name: item.name,
-            quantity: quantity,
+            quantity: 1,
             price: item.price,
           });
       },
-
-
-
-      // getQuantity($event) {
-      //   this.quantity = $event.target.value;
-      // }
+      addToBasketMore(item) {
+        const inputQuantity = parseInt(this.inputQuantity);
+        this.$store.commit('addToBasketMore',
+          {
+            name: item.name,
+            quantity: inputQuantity,
+            price: item.price,
+          });
+      }
     },
   };
 
@@ -85,6 +88,7 @@
     display: flex;
     flex-direction: column;
     .box {
+      transition: .5s;
       border: 2px solid #e6e6e6;
       padding: 20px;
       margin: 20px;
@@ -107,6 +111,10 @@
         border-radius: 20px;
         cursor: pointer;
         outline: none;
+      }
+      &:hover {
+        transition: .5s;
+        background-color: #f9f9f9;
       }
     }
   }
