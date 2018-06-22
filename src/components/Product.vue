@@ -5,6 +5,12 @@
       :key="item.id"
       class="box"
     >
+      <router-link
+        :to="{name: 'details', params: {id: item.id}}"
+        class="box__button"
+      >
+        Details
+      </router-link>
 
       <img :src="item.image" class="box__image" alt="">
       <p
@@ -51,19 +57,16 @@
       products() {
         return this.$store.state.products;
       },
-
     },
     methods: {
       addToBasket(item) {
         const quantity = parseInt(this.quantity);
-        item.inStock -= 1;
 
-        this.$store.commit('updateBasket',
+        this.$store.commit('addToBasket',
           {
             name: item.name,
             quantity: quantity,
             price: item.price,
-            inStock: item.inStock
           });
       },
 
@@ -93,6 +96,10 @@
         width: 15%;
       }
       &__button {
+        margin: 10px auto;
+        text-decoration: none;
+        max-width: 100px;
+        display: block;
         border: 0;
         background-color: #4286f4;
         color: #fff;

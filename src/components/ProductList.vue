@@ -1,11 +1,11 @@
 <template>
-  <header>
+  <main>
     <h1>Welcome to the shop</h1>
     <div class="container">
       <Product></Product>
       <Basket></Basket>
     </div>
-  </header>
+  </main>
 </template>
 
 <script>
@@ -27,6 +27,9 @@
 </script>
 
 <style lang="scss" scoped>
+  main{
+    padding: 30px;
+  }
   h1 {
     margin-bottom: 50px;
   }
