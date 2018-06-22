@@ -1,10 +1,11 @@
 <template>
   <div class="product-container">
     <div
-      v-for="(item, index) in products"
+      v-for="item in products"
       :key="item.id"
       class="box"
     >
+
       <img :src="item.image" class="box__image" alt="">
       <p
         class="box__name"
@@ -28,7 +29,8 @@
         </span>
       </p>
       <button
-        @click="addToStore(item, index)"
+        @click="addToBasket(item)"
+        class="box__button"
       >
         Buy one
       </button>
@@ -49,18 +51,24 @@
       products() {
         return this.$store.state.products;
       },
+
     },
     methods: {
-      addToStore(item, index) {
+      addToBasket(item) {
         const quantity = parseInt(this.quantity);
+        item.inStock -= 1;
+
         this.$store.commit('updateBasket',
           {
             name: item.name,
             quantity: quantity,
             price: item.price,
-            index
+            inStock: item.inStock
           });
       },
+
+
+
       // getQuantity($event) {
       //   this.quantity = $event.target.value;
       // }
@@ -83,6 +91,15 @@
       }
       &__input {
         width: 15%;
+      }
+      &__button {
+        border: 0;
+        background-color: #4286f4;
+        color: #fff;
+        padding: 10px 15px;
+        border-radius: 20px;
+        cursor: pointer;
+        outline: none;
       }
     }
   }

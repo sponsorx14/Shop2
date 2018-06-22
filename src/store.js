@@ -13,13 +13,13 @@ export default new Vuex.Store({
   mutations: {
     updateBasket(state, value) {
       const multiplied = state.basket.find(item => item.name === value.name);
-      console.log(value.quantity)
+
       if (multiplied) {
         multiplied.quantity += value.quantity;
         multiplied.price = value.price * multiplied.quantity;
       }
       else {
-        state.basket.push(value)
+        state.basket.push(value);
       }
     }
   },
