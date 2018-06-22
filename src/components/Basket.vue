@@ -2,7 +2,7 @@
   <div class="basket">
     <div v-for="item in basket" class="basket__product">
       <p>Name: {{ item.name}} </p>
-      <p>Qty: {{ item.qty }} </p>
+      <p>Qty: {{ item.quantity }} </p>
       <p>Total:{{ item.price }}zł </p>
     </div>
   </div>
@@ -28,10 +28,14 @@
 </script>
 
 <style>
+  .basket {
+    width: 400px;
+  }
   .basket__product {
+    border-radius: 20px;
     margin: 30px;
-    padding: 50px;
-    border: 2px solid  #ccc;
+    padding: 30px;
+    border: 2px solid #e6e6e6;
   }
 
 </style>

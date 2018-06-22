@@ -1,7 +1,7 @@
 <template>
   <div class="product-container">
     <div
-      v-for="(item) in products"
+      v-for="(item, index) in products"
       :key="item.id"
       class="box"
     >
@@ -20,7 +20,7 @@
           <!--@keyup="getQuantity($event)"-->
           <!--type="text"-->
           <!--class="box__input"-->
-          <!--placeholder="Qty"-->
+          <!--placeholder="quantity"-->
         <!--&gt;-->
         In stock:
         <span>
@@ -28,7 +28,7 @@
         </span>
       </p>
       <button
-        @click="addToStore(item)"
+        @click="addToStore(item, index)"
       >
         Buy one
       </button>
@@ -42,7 +42,7 @@
     name: 'Product',
     data() {
       return {
-        qty: 1,
+        quantity: 1,
       };
     },
     computed: {
@@ -51,19 +51,18 @@
       },
     },
     methods: {
-      addToStore(item) {
-        const qty = parseInt(this.qty);
-        const price = qty * item.price;
-
+      addToStore(item, index) {
+        const quantity = parseInt(this.quantity);
         this.$store.commit('updateBasket',
           {
             name: item.name,
-            qty,
-            price: price
+            quantity: quantity,
+            price: item.price,
+            index
           });
       },
       // getQuantity($event) {
-      //   this.qty = $event.target.value;
+      //   this.quantity = $event.target.value;
       // }
     },
   };
