@@ -10,7 +10,8 @@ export default new Vuex.Store({
     products: data,
     basket: [],
     inStock: [],
-    searchTerm: ''
+    searchTerm: '',
+    filteredCheckboxes: []
   },
   mutations: {
 
@@ -83,18 +84,49 @@ export default new Vuex.Store({
         }
       });
     },
-    updateResult(state, value){
+    updateResult(state, value) {
       state.searchTerm = value;
+    },
+    filterCheckbox(state, value) {
+      let filteredCheckbox = state.filteredCheckboxes;
+
+      if (filteredCheckbox.includes(value)) {
+        const indexOf = filteredCheckbox.indexOf(value);
+        filteredCheckbox.splice(indexOf, 1)
+      } else {
+        filteredCheckbox.push(value);
+      }
     }
   },
-  actions: {},
+  actions: {
+    updateResult({commit}, value) {
+      commit('updateResult', value)
+    },
+    filterCheckbox({commit}, value) {
+      commit('filterCheckbox', value)
+    }
+  },
   getters: {
     filterName(state) {
       return state.products.filter(item => {
         let itemName = item.name.toLowerCase();
         let filteredName = state.searchTerm.toLowerCase();
-         return itemName.includes(filteredName);
+        return itemName.includes(filteredName);
       })
+    },
+    filterCheckbox(state) {
+      const searchTerm = state.searchTerm.toLowerCase();
+      const checkboxes = state.filteredCheckboxes;
+      const filtered = state.products.filter(item => checkboxes.includes(item.categories));
+
+      if (searchTerm) {
+        return filtered.filter(item => {
+          const itemName = item.name.toLowerCase();
+          return itemName.includes(searchTerm)
+          }
+        )
+      }
+      return filtered
     }
   },
 });

@@ -20,17 +20,17 @@
         {{ item.name }}
       </p>
 
-      <p class="box__price">
+      <p
+        class="box__price">
         {{ item.price }}zł
       </p>
-
-      <button
-        @click="addToBasketMore(item)"
-        class="box__button"
+      <p
+        class="box__inStock"
       >
-        Buy
-      </button>
-      <p>Or</p>
+        In stock:
+        {{ item.inStock }}
+      </p>
+
       <button
         @click="addToBasketOne(item)"
         class="box__button"
@@ -55,8 +55,13 @@
       products() {
         return this.$store.state.products;
       },
-      newProducts(){
-        return this.$store.getters.filterName;
+      newProducts() {
+        const filteredCheckboxes = this.$store.getters.filterCheckbox;
+        if (filteredCheckboxes.length !== 0) {
+          return filteredCheckboxes;
+        } else {
+          return this.$store.getters.filterName
+        }
       }
     },
     methods: {

@@ -9,7 +9,8 @@
       "screen": "5",
       "memory": "16 GB",
       "system": "Android 5.1 Lollipop"
-    }
+    },
+    "categories": "Huawei"
   },
   {
     "id": 2,
@@ -21,7 +22,8 @@
       "screen": "5.5",
       "memory": "32 GB",
       "system": "Android 6.0 Marshmallow"
-    }
+    },
+    "categories": "Lenovo"
   },
   {
     "id": 3,
@@ -33,7 +35,8 @@
       "screen": "4.7",
       "memory": "64 GB",
       "system": "iOS 11"
-    }
+    },
+    "categories": "Iphone"
   },
   {
     "id": 4,
@@ -45,7 +48,8 @@
       "screen": "5.2",
       "memory": "16 GB",
       "system": "Android 7.1 Nougat"
-    }
+    },
+    "categories": "Nokia"
   },
   {
     "id": 5,
@@ -57,7 +61,8 @@
       "screen": "5.84",
       "memory": "128 GB",
       "system": "Android 8.1 Oreo"
-    }
+    },
+    "categories": "Honor"
   },
   {
     "id": 6,
@@ -69,6 +74,55 @@
       "screen": "6",
       "memory": "64 GB",
       "system": "Android 8.1 Oreo"
-    }
+    },
+    "categories": "Xiaomi"
+  },
+  {
+    "id": 7,
+    "name": "Xiaomi Mi Band 2 czarny",
+    "price": 119.00,
+    "inStock": 50,
+    "image": "https://cdn.x-kom.pl/i/setup/images/prod/big/product-large,xiaomi-mi-band-2-czarny-346364,pr_2017_1_25_9_18_4_730.jpg",
+    "details": {
+      "screen": "0.96"
+    },
+    "categories": "Xiaomi"
+  },
+  {
+    "id": 8,
+    "name": "Huawei Band A2 czarny",
+    "price": 149.00,
+    "inStock": 30,
+    "image": "https://cdn.x-kom.pl/i/setup/images/prod/big/product-large,huawei-band-a2-czarny-394902,2017/11/pr_2017_11_24_8_20_5_657_01.jpg",
+    "details": {
+      "screen": "0.96"
+    },
+    "categories": "Huawei"
+  },
+  {
+    "id": 9,
+    "name": "Lenovo Ideapad 320-15 i3-7130U/8GB/256 GT940MX",
+    "price": 2079.00,
+    "inStock": 100,
+    "image": "https://cdn.x-kom.pl/i/setup/images/prod/big/product-large,lenovo-ideapad-320-15-i3-7130u8gb256-gt940mx-407826,2017/8/pr_2017_8_3_12_13_41_385_05.jpg",
+    "details": {
+      "screen": "15,6",
+      "memory": "256 GB",
+      "system": "None"
+    },
+    "categories": "Lenovo"
+  },
+  {
+    "id": 10,
+    "name": "Lenovo Ideapad 320-15 i3-8130U/8GB/256/Win10",
+    "price": 2319.00,
+    "inStock": 80,
+    "image": "https://cdn.x-kom.pl/i/setup/images/prod/big/product-large,lenovo-ideapad-320-15-i3-8130u8gb256win10-428831,2017/8/pr_2017_8_3_12_17_45_190_02.jpg",
+    "details": {
+      "screen": "15,6",
+      "memory": "256 GB",
+      "system": "Windows 10"
+    },
+    "categories": "Lenovo"
   }
 ]
