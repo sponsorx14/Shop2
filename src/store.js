@@ -14,7 +14,6 @@ export default new Vuex.Store({
     filteredCheckboxes: [],
     filterPriceFrom: 0,
     filterPriceTo: 9999
-
   },
   mutations: {
 
@@ -78,6 +77,14 @@ export default new Vuex.Store({
     filterPrice(state, value) {
       value.priceFrom !== undefined ? state.filterPriceFrom = parseInt(value.priceFrom) : state.filterPriceFrom
       value.priceTo !== undefined ? state.filterPriceTo = parseInt(value.priceTo) : state.filterPriceTo
+    },
+    resetFilters(state) {
+      state.searchTerm = ''
+      state.filteredCheckboxes = []
+      state.filterPriceFrom = 0;
+      state.filterPriceTo = 9999;
+      console.log(state.searchTerm)
+
     }
   },
   actions: {
@@ -89,11 +96,14 @@ export default new Vuex.Store({
     },
     filterPrice({commit}, value) {
       commit('filterPrice', value)
+    },
+    resetFilters({commit}) {
+      commit('resetFilters')
     }
   },
   getters: {
-    filterCheckboxes(state){
-      if(state.filteredCheckboxes.length === 0 ) {
+    filterCheckboxes(state) {
+      if (state.filteredCheckboxes.length === 0) {
         return state.products;
       }
       return state.products.filter(item => state.filteredCheckboxes.includes(item.categories))
@@ -105,13 +115,11 @@ export default new Vuex.Store({
         return item.name.toLowerCase().includes(state.searchTerm.toLowerCase());
       });
       const byPrice = byName.filter(item => {
-        if(item.price >= state.filterPriceFrom && item.price <= state.filterPriceTo){
+        if (item.price >= state.filterPriceFrom && item.price <= state.filterPriceTo) {
           return item
         }
       });
-      if(byPrice.length === 0){
-        return state.products
-      }
+
       return byPrice;
     }
   },

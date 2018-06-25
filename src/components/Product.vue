@@ -104,6 +104,9 @@
         border-radius: 20px;
         cursor: pointer;
         outline: none;
+        &:hover {
+          background-color: #5998ff;
+        }
       }
       &:hover {
         transition: .5s;

@@ -82,6 +82,12 @@
           type="text"
         >
       </div>
+      <button
+        @click="resetFilters"
+        class="main__filters__button"
+      >
+        Clear filters
+      </button>
     </div>
     <div class="container">
       <Product></Product>
@@ -99,6 +105,11 @@
     components: {
       Product,
       Basket
+    },
+    methods: {
+      resetFilters(){
+        this.$store.dispatch('resetFilters')
+      }
     },
     computed: {
       basket() {
@@ -173,6 +184,20 @@
           border: 2px solid #ccc;
           outline: none;
           border-radius: 20px;
+        }
+      }
+      &__button {
+        padding: 10px;
+        margin: 10px;
+        border: 0;
+        background-color: #bc2727;
+        color: #fff;
+        font-size: 20px;
+        border-radius: 10px;
+        cursor: pointer;
+        outline: none;
+        &:hover {
+          background-color: #cc2c2c;
         }
       }
     }
