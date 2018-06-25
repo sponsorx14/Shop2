@@ -56,12 +56,9 @@
         return this.$store.state.products;
       },
       newProducts() {
-        const filteredCheckboxes = this.$store.getters.filterCheckbox;
-        if (filteredCheckboxes.length !== 0) {
-          return filteredCheckboxes;
-        } else {
-          return this.$store.getters.filterName
-        }
+        const newProducts = this.$store.getters.newProducts;
+
+        return newProducts;
       }
     },
     methods: {

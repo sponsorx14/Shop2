@@ -2,7 +2,7 @@
   {
     "id": 1,
     "name": "Huawei Y6 PRO LTE Dual SIM",
-    "price": 449.00,
+    "price": 449,
     "inStock": 400,
     "image": "https://cdn.x-kom.pl/i/setup/images/prod/big/product-large,huawei-y6-pro-lte-dual-sim-bialy-306287,2017/7/pr_2017_7_11_9_53_18_663.jpg",
     "details": {
@@ -15,7 +15,7 @@
   {
     "id": 2,
     "name": "Lenovo K6 Note 3/32GB Dual SIM srebrny",
-    "price": 649.00,
+    "price": 649,
     "inStock": 350,
     "image": "https://cdn.x-kom.pl/i/setup/images/prod/big/product-large,lenovo-k6-note-332gb-dual-sim-srebrny-341781,2017/11/pr_2017_11_14_12_20_52_779_00.jpg",
     "details": {
@@ -28,7 +28,7 @@
   {
     "id": 3,
     "name": "Apple iPhone 8 64GB Space Gray",
-    "price": 3149.00,
+    "price": 3149,
     "inStock": 100,
     "image": "https://cdn.x-kom.pl/i/setup/images/prod/big/product-large,apple-iphone-8-64gb-space-gray-382276,2017/9/pr_2017_9_13_14_10_0_673_01.jpg",
     "details": {
@@ -41,7 +41,7 @@
   {
     "id": 4,
     "name": "Nokia 5 Dual SIM czarny",
-    "price": 549.00,
+    "price": 549,
     "inStock": 50,
     "image": "https://cdn.x-kom.pl/i/setup/images/prod/big/product-large,nokia-5-dual-sim-czarny-357302,2017/7/pr_2017_7_11_9_21_15_638.jpg",
     "details": {
@@ -54,7 +54,7 @@
   {
     "id": 5,
     "name": "Honor 10 LTE Dual SIM 128 GB niebieski",
-    "price": 2049.00,
+    "price": 2049,
     "inStock": 100,
     "image": "https://cdn.x-kom.pl/i/setup/images/prod/big/product-large,honor-10-lte-dual-sim-128-gb-niebieski-428795,2018/5/pr_2018_5_9_9_50_21_827_12.jpg",
     "details": {
@@ -67,7 +67,7 @@
   {
     "id": 6,
     "name": "Xiaomi Redmi Note 5 4/64GB",
-    "price": 1049.00,
+    "price": 1049,
     "inStock": 300,
     "image": "https://cdn.x-kom.pl/i/setup/images/prod/big/product-large,xiaomi-redmi-note-5-464gb-black-429745,2018/5/pr_2018_5_10_15_17_6_838_04.jpg",
     "details": {
@@ -80,7 +80,7 @@
   {
     "id": 7,
     "name": "Xiaomi Mi Band 2 czarny",
-    "price": 119.00,
+    "price": 119,
     "inStock": 50,
     "image": "https://cdn.x-kom.pl/i/setup/images/prod/big/product-large,xiaomi-mi-band-2-czarny-346364,pr_2017_1_25_9_18_4_730.jpg",
     "details": {
@@ -91,7 +91,7 @@
   {
     "id": 8,
     "name": "Huawei Band A2 czarny",
-    "price": 149.00,
+    "price": 149,
     "inStock": 30,
     "image": "https://cdn.x-kom.pl/i/setup/images/prod/big/product-large,huawei-band-a2-czarny-394902,2017/11/pr_2017_11_24_8_20_5_657_01.jpg",
     "details": {
@@ -102,7 +102,7 @@
   {
     "id": 9,
     "name": "Lenovo Ideapad 320-15 i3-7130U/8GB/256 GT940MX",
-    "price": 2079.00,
+    "price": 2079,
     "inStock": 100,
     "image": "https://cdn.x-kom.pl/i/setup/images/prod/big/product-large,lenovo-ideapad-320-15-i3-7130u8gb256-gt940mx-407826,2017/8/pr_2017_8_3_12_13_41_385_05.jpg",
     "details": {
@@ -115,7 +115,7 @@
   {
     "id": 10,
     "name": "Lenovo Ideapad 320-15 i3-8130U/8GB/256/Win10",
-    "price": 2319.00,
+    "price": 2319,
     "inStock": 80,
     "image": "https://cdn.x-kom.pl/i/setup/images/prod/big/product-large,lenovo-ideapad-320-15-i3-8130u8gb256win10-428831,2017/8/pr_2017_8_3_12_17_45_190_02.jpg",
     "details": {

@@ -11,7 +11,10 @@ export default new Vuex.Store({
     basket: [],
     inStock: [],
     searchTerm: '',
-    filteredCheckboxes: []
+    filteredCheckboxes: [],
+    filterPriceFrom: 0,
+    filterPriceTo: 9999
+
   },
   mutations: {
 
@@ -71,6 +74,10 @@ export default new Vuex.Store({
       } else {
         filteredCheckbox.push(value);
       }
+    },
+    filterPrice(state, value) {
+      value.priceFrom !== undefined ? state.filterPriceFrom = parseInt(value.priceFrom) : state.filterPriceFrom
+      value.priceTo !== undefined ? state.filterPriceTo = parseInt(value.priceTo) : state.filterPriceTo
     }
   },
   actions: {
@@ -79,29 +86,33 @@ export default new Vuex.Store({
     },
     filterCheckbox({commit}, value) {
       commit('filterCheckbox', value)
+    },
+    filterPrice({commit}, value) {
+      commit('filterPrice', value)
     }
   },
   getters: {
-    filterName(state) {
-      return state.products.filter(item => {
-        let itemName = item.name.toLowerCase();
-        let filteredName = state.searchTerm.toLowerCase();
-        return itemName.includes(filteredName);
-      })
-    },
-    filterCheckbox(state) {
-      const searchTerm = state.searchTerm.toLowerCase();
-      const checkboxes = state.filteredCheckboxes;
-      const filtered = state.products.filter(item => checkboxes.includes(item.categories));
-
-      if (searchTerm) {
-        return filtered.filter(item => {
-          const itemName = item.name.toLowerCase();
-          return itemName.includes(searchTerm)
-          }
-        )
+    filterCheckboxes(state){
+      if(state.filteredCheckboxes.length === 0 ) {
+        return state.products;
       }
-      return filtered
+      return state.products.filter(item => state.filteredCheckboxes.includes(item.categories))
+    },
+    newProducts(state, getters) {
+      const filteredCheckbox = getters.filterCheckboxes;
+
+      const byName = filteredCheckbox.filter(item => {
+        return item.name.toLowerCase().includes(state.searchTerm.toLowerCase());
+      });
+      const byPrice = byName.filter(item => {
+        if(item.price >= state.filterPriceFrom && item.price <= state.filterPriceTo){
+          return item
+        }
+      });
+      if(byPrice.length === 0){
+        return state.products
+      }
+      return byPrice;
     }
   },
 });
