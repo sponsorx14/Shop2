@@ -32,31 +32,6 @@ export default new Vuex.Store({
         state.basket.push(value);
       }
     },
-
-    addToBasketMore(state, value) {
-      const multiplied = state.basket.find(item => item.name === value.name);
-      const price = value.quantity * value.price;
-      const values = {
-        name: value.name,
-        quantity: value.quantity,
-        price: price
-      };
-
-      this.state.products.find(item => {
-        if (item.name === value.name) {
-          item.inStock -= value.quantity;
-        }
-      });
-
-      if (multiplied) {
-        multiplied.quantity += value.quantity;
-        multiplied.price = value.price * multiplied.quantity;
-      }
-      else {
-        state.basket.push(values);
-      }
-    },
-
     removeFromBasket(state, value) {
       const findProduct = state.basket.find(item => item.name === value.name);
 

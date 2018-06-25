@@ -74,15 +74,6 @@
             price: item.price,
           });
       },
-      addToBasketMore(item) {
-        const inputQuantity = parseInt(this.inputQuantity);
-        this.$store.commit('addToBasketMore',
-          {
-            name: item.name,
-            quantity: inputQuantity,
-            price: item.price,
-          });
-      }
     },
   };
 
