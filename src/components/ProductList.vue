@@ -11,57 +11,45 @@
         >
       </div>
       <div class="main__filters main__filters--categories">
-        <label for="Huawei">Huawei</label>
+        <label>Huawei</label>
         <input
-          v-model="filterCheckbox"
-          true-value="Huawei"
-          false-value="Huawei"
-          id="Huawei"
+          v-model="setCheckBox"
+          value="Huawei"
           type="checkbox"
           class="main__filters--categories--checkbox"
         >
-        <label for="Lenovo">Lenovo</label>
+        <label>Lenovo</label>
         <input
-          v-model="filterCheckbox"
-          true-value="Lenovo"
-          false-value="Lenovo"
-          id="Lenovo"
+          v-model="setCheckBox"
+          value="Lenovo"
           type="checkbox"
           class="main__filters--categories--checkbox"
         >
-        <label for="Iphone">Iphone</label>
+        <label>Iphone</label>
         <input
-          v-model="filterCheckbox"
-          true-value="Iphone"
-          false-value="Iphone"
-          id="Iphone"
+          v-model="setCheckBox"
+          value="Iphone"
           type="checkbox"
           class="main__filters--categories--checkbox"
         >
-        <label for="Xiaomi">Xiaomi</label>
+        <label>Xiaomi</label>
         <input
-          v-model="filterCheckbox"
-          true-value="Xiaomi"
-          false-value="Xiaomi"
-          id="Xiaomi"
+          v-model="setCheckBox"
+          value="Xiaomi"
           type="checkbox"
           class="main__filters--categories--checkbox"
         >
-        <label for="Nokia">Nokia</label>
+        <label>Nokia</label>
         <input
-          v-model="filterCheckbox"
-          true-value="Nokia"
-          false-value="Nokia"
-          id="Nokia"
+          v-model="setCheckBox"
+          value="Nokia"
           type="checkbox"
           class="main__filters--categories--checkbox"
         >
-        <label for="Honor">Honor</label>
+        <label>Honor</label>
         <input
-          v-model="filterCheckbox"
-          true-value="Honor"
-          false-value="Honor"
-          id="Honor"
+          v-model="setCheckBox"
+          value="Honor"
           type="checkbox"
           class="main__filters--categories--checkbox"
         >
@@ -83,7 +71,7 @@
         >
       </div>
       <button
-        @click="resetFilters"
+        @click="setCheckBox"
         class="main__filters__button"
       >
         Clear filters
@@ -116,44 +104,38 @@
         return this.$store.state.basket
       },
       filterName: {
-        get() {
-
-        },
+        get() {},
         set(value) {
           this.$store.dispatch('updateResult', value)
         }
       },
-      filterCheckbox: {
-        get(){
-
-        },
-        set(value){
-          this.$store.dispatch('filterCheckbox', value)
-        }
-      },
       filterPriceFrom: {
-        get(){
-
-        },
+        get(){},
         set(value){
           const values = {
             priceFrom: value
-          }
+          };
           this.$store.dispatch('filterPrice', values);
         }
       },
       filterPriceTo: {
-        get(){
-
-        },
+        get(){},
         set(value){
           const values = {
             priceTo: value
           }
           this.$store.dispatch('filterPrice', values);
         }
+      },
+      setCheckBox: {
+        get(){
+          return this.$store.state.filteredCheckboxes;
+        },
+        set(value){
+          this.$store.dispatch('filterCheckbox', value)
+        }
       }
-    },
+    }
 
   };
 </script>

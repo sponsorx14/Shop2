@@ -65,14 +65,7 @@ export default new Vuex.Store({
       state.searchTerm = value;
     },
     filterCheckbox(state, value) {
-      let filteredCheckbox = state.filteredCheckboxes;
-
-      if (filteredCheckbox.includes(value)) {
-        const indexOf = filteredCheckbox.indexOf(value);
-        filteredCheckbox.splice(indexOf, 1)
-      } else {
-        filteredCheckbox.push(value);
-      }
+      state.filteredCheckboxes =value
     },
     filterPrice(state, value) {
       value.priceFrom !== undefined ? state.filterPriceFrom = parseInt(value.priceFrom) : state.filterPriceFrom
@@ -83,7 +76,6 @@ export default new Vuex.Store({
       state.filteredCheckboxes = []
       state.filterPriceFrom = 0;
       state.filterPriceTo = 9999;
-      console.log(state.searchTerm)
 
     }
   },
@@ -106,6 +98,7 @@ export default new Vuex.Store({
       if (state.filteredCheckboxes.length === 0) {
         return state.products;
       }
+      console.log(state.filteredCheckboxes)
       return state.products.filter(item => state.filteredCheckboxes.includes(item.categories))
     },
     newProducts(state, getters) {
