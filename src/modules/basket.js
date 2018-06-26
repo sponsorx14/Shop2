@@ -6,66 +6,69 @@ const state = {
   totalPrice: 0,
   basketQuantity: 0
 };
+
 const mutations = {
   addToBasketOne(state, value) {
-    const multiplied = state.basket.find(item => item.name === value.name);
+    const duplicatedProduct = state.basket.find(item => item.id === value.id);
     state.basketQuantity += value.quantity;
     store.state.products.find(item => {
-      if (item.name === value.name) {
-        item.inStock -= 1
+      if (item.id === value.id) {
+        item.inStock -= value.quantity;
       }
     });
-    if (multiplied) {
-      multiplied.quantity += value.quantity;
-      multiplied.price = value.price * multiplied.quantity;
+    if (duplicatedProduct) {
+      duplicatedProduct.quantity += value.quantity;
+      duplicatedProduct.price = value.price * duplicatedProduct.quantity;
       state.totalPrice += value.price;
-
     }
     else {
       state.basket.push(value);
       state.totalPrice += value.price;
     }
   },
-  removeFromBasket(state, value) {
-    const findProduct = state.basket.find(item => item.name === value.name);
-    state.basketQuantity -= 1;
-    findProduct.quantity -= 1;
-    findProduct.price = value.price * findProduct.quantity;
-    state.totalPrice -= value.price;
+  removeFromBasketOne(state, value) {
+    const duplicatedProduct = state.basket.find(item => item.name === value.name);
+    const newPrice = value.price / value.quantity;
 
-    state.products.find(item => {
+    state.basketQuantity -= 1;
+    duplicatedProduct.quantity -= 1;
+    duplicatedProduct.price = newPrice * duplicatedProduct.quantity;
+    state.totalPrice -= newPrice;
+
+    store.state.products.find(item => {
       if (item.name === value.name) {
         value.quantity > 0 ? item.inStock += 1 : null;
       }
     });
   },
   removeFromBasketAll(state, value) {
-    console.log(value)
-    const multiplied = state.basket.find(item => item.name === value.name);
-    state.totalPrice -= multiplied.price;
-    state.basketQuantity -= multiplied.quantity;
-    multiplied.quantity = 0;
-    multiplied.price = 0;
+    const duplicatedProduct = state.basket.find(item => item.name === value.name);
+    state.totalPrice -= duplicatedProduct.price;
+    state.basketQuantity -= duplicatedProduct.quantity;
+    duplicatedProduct.quantity = 0;
+    duplicatedProduct.price = 0;
+
     store.state.products.find(item => {
       if (item.name === value.name) {
         value.quantity > 0 ? item.inStock += value.quantity : null;
       }
     });
   },
-  resetBasket(state){
+  resetBasket(state) {
     state.totalPrice = 0;
-    state.basket =  []
+    state.basket = [];
     state.basketQuantity = 0
   }
 };
+
 const actions = {
-  removeFromBasket({ commit }, value){
-    commit('removeFromBasket', value)
+  removeFromBasketOne({commit}, value) {
+    commit('removeFromBasketOne', value)
   },
-  removeFromBasketAll({ commit }, value){
+  removeFromBasketAll({commit}, value) {
     commit('removeFromBasketAll', value)
   },
-  resetBasket({ commit }){
+  resetBasket({commit}) {
     commit('resetBasket')
   }
 };

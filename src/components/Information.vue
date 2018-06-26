@@ -16,12 +16,11 @@
         class="information__list__item"
         tag="li"
       >
-        Basket ({{ basketQuantity }})
+        Basket
+        ({{ basketQuantity }})
       </router-link>
     </ul>
-    <p
-      class="information__total"
-    >
+    <p class="information__total">
       Total:
       {{ totalPrice }}
       zł
@@ -33,14 +32,14 @@
   export default {
     name: "Information",
     computed: {
-      totalPrice(){
-        return this.$store.state.totalPrice;
+      totalPrice() {
+        return this.$store.state.basketModule.totalPrice;
       },
-      basketQuantity(){
-        return this.$store.state.basketQuantity;
+      basketQuantity() {
+        return this.$store.state.basketModule.basketQuantity;
       }
     }
-  }
+  };
 </script>
 
 <style lang="scss" scoped>
@@ -54,7 +53,7 @@
     justify-content: space-between;
     align-items: center;
     font-size: 20px;
-    box-shadow: 0px 10px 30px -10px rgba(0,0,0,0.75);
+    box-shadow: 0px 10px 30px -10px rgba(0, 0, 0, 0.75);
     &__list {
       margin: 0;
       padding: 10px;
@@ -73,6 +72,7 @@
       margin: 0
     }
   }
+
   .active {
     background-color: #d8a61c;
   }

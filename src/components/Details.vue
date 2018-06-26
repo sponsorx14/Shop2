@@ -1,55 +1,42 @@
 <template>
   <div class="main">
     <div
-      v-for="item in getData"
+      v-for="item in showDatails"
       class="box"
     >
-      <router-link
-        to="/"
-      >
+      <router-link to="/">
         <i class="fas fa-arrow-circle-left"></i>
       </router-link>
       <a
-        :href="item.image" target="_blank"
+        :href="item.image"
+        target="_blank"
       >
         <img
           :src="item.image"
-          class="box__image" alt=""
+          class="box__image"
+          alt=""
         >
       </a>
-      <p
-        class="box__name"
-      >
+      <p class="box__name">
         {{ item.name }}
       </p>
-      <p
-        class="box__details"
-      >
+      <p class="box__details">
         Screen size:
         {{ item.details.screen }}
       </p>
-      <p
-        class="box__details"
-      >
+      <p class="box__details">
         Memory:
         {{ item.details.memory }}
       </p>
-      <p
-        class="box__details"
-      >
+      <p class="box__details">
         System:
         {{ item.details.system }}
       </p>
-
-      <p
-        class="box__price"
-      >
+      <p class="box__price">
         Only for:
         {{ item.price }}zł
       </p>
-      <p
-        class="box__stock"
-      >
+      <p class="box__stock">
         In Stock:
         {{ item.inStock }}
       </p>
@@ -61,18 +48,17 @@
   export default {
     name: "Details",
     computed: {
-      getData() {
+      showDatails() {
         const routeId = parseInt(this.$route.params.id);
         return this.$store.state.products.filter(item => item.id === routeId);
       }
     }
-  }
+  };
 </script>
 
 <style lang="scss" scoped>
   .main {
     margin: 30px 0;
-
     .box {
       border: 2px solid #e6e6e6;
       padding: 20px;

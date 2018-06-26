@@ -9,9 +9,7 @@
       >
     </div>
     <div class="main__filters main__filters--categories">
-      <label
-        class="main__filters--categories--label"
-      >
+      <label class="main__filters--categories--label">
         <input
           v-model="filterCheckbox"
           value="Huawei"
@@ -20,10 +18,7 @@
         >
         <span>Huawei</span>
       </label>
-
-      <label
-        class="main__filters--categories--label"
-      >
+      <label class="main__filters--categories--label">
         <input
           v-model="filterCheckbox"
           value="Lenovo"
@@ -32,10 +27,7 @@
         >
         <span>Lenovo</span>
       </label>
-
-      <label
-        class="main__filters--categories--label"
-      >
+      <label class="main__filters--categories--label">
         <input
           v-model="filterCheckbox"
           value="Iphone"
@@ -44,10 +36,7 @@
         >
         <span>Iphone</span>
       </label>
-
-      <label
-        class="main__filters--categories--label"
-      >
+      <label class="main__filters--categories--label">
         <input
           v-model="filterCheckbox"
           value="Xiaomi"
@@ -56,10 +45,7 @@
         >
         <span>Xiaomi</span>
       </label>
-
-      <label
-        class="main__filters--categories--label"
-      >
+      <label class="main__filters--categories--label">
         <input
           v-model="filterCheckbox"
           value="Nokia"
@@ -68,10 +54,7 @@
         >
         <span>Nokia</span>
       </label>
-
-      <label
-        class="main__filters--categories--label"
-      >
+      <label class="main__filters--categories--label">
         <input
           v-model="filterCheckbox"
           value="Honor"
@@ -109,11 +92,6 @@
 <script>
   export default {
     name: "Filters",
-    data(){
-      return {
-        allCategories: []
-      }
-    },
     methods: {
       resetFilters() {
         this.$store.dispatch('resetFilters');
@@ -122,13 +100,15 @@
     computed: {
       filterName: {
         get() {
+          return null;
         },
         set(value) {
-          this.$store.dispatch('updateResult', value);
+          this.$store.dispatch('filterName', value);
         }
       },
       filterPriceFrom: {
         get() {
+          return null;
         },
         set(value) {
           const values = {
@@ -139,6 +119,7 @@
       },
       filterPriceTo: {
         get() {
+          return null;
         },
         set(value) {
           const values = {
@@ -149,15 +130,14 @@
       },
       filterCheckbox: {
         get() {
-          return this.$store.state.filteredCheckboxes;
+          return this.$store.state.filtersModule.filterCheckboxes;
         },
         set(value) {
           this.$store.dispatch('filterCheckbox', value);
-
         }
       }
     }
-  }
+  };
 </script>
 
 <style lang="scss" scoped>
@@ -172,7 +152,7 @@
     }
     &--categories {
       padding: 10px 0;
-      &--label span{
+      &--label span {
         display: inline-block;
         background: #c1c1c1;
         padding: 15px 30px;

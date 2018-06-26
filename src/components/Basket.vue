@@ -3,6 +3,7 @@
     <h2>Your basket: </h2>
     <button
       @click="resetBasket"
+      :class="[basketQuantity !== 0 ? '' : hideBasket]"
       class="basket__button"
     >
       Remove all
@@ -25,7 +26,7 @@
         {{ item.price }}zł
       </p>
       <button
-        @click="removeFromBasket(item)"
+        @click="removeFromBasketOne(item)"
         class="basket__button"
       >
         Remove one
@@ -44,20 +45,22 @@
   export default {
     name: 'Basket',
     computed: {
-      basket() {
-        return this.$store.state.basket;
+      basketQuantity() {
+        return this.$store.state.basketModule.basketQuantity;
       },
-      hideBasket(){
+      basket() {
+        return this.$store.state.basketModule.basket;
+      },
+      hideBasket() {
         return 'basket__hide';
       }
     },
     methods: {
-      removeFromBasket(item) {
-        const price = item.price / item.quantity;
-        this.$store.dispatch('removeFromBasket', {
+      removeFromBasketOne(item) {
+        this.$store.dispatch('removeFromBasketOne', {
           name: item.name,
           quantity: item.quantity,
-          price: price,
+          price: item.price,
         });
       },
       removeFromBasketAll(item) {
@@ -66,8 +69,8 @@
           quantity: item.quantity
         });
       },
-      resetBasket(){
-        this.$store.dispatch('resetBasket')
+      resetBasket() {
+        this.$store.dispatch('resetBasket');
       }
     },
   };
@@ -86,10 +89,10 @@
     &__button {
       margin: 0 10px;
       border: 0;
+      border-radius: 10px;
       background-color: #bc2727;
       color: #fff;
       padding: 10px 15px;
-      border-radius: 10px;
       cursor: pointer;
       outline: none;
     }

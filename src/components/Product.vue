@@ -2,7 +2,7 @@
   <div class="product-container">
     <h2> Available products: </h2>
     <div
-      v-for="item in newProducts"
+      v-for="item in displayProducts"
       :key="item.id"
       class="box"
     >
@@ -11,30 +11,21 @@
       >
         <i class="fas fa-info-circle"></i>
       </router-link>
-
       <img
         :src="item.image"
         class="box__image"
-        alt=""
+        alt="phone_img"
       >
-      <p
-        class="box__name"
-      >
+      <p class="box__name">
         {{ item.name }}
       </p>
-
-      <p
-        class="box__price"
-      >
+      <p class="box__price">
         {{ item.price }}zł
       </p>
-      <p
-        class="box__inStock"
-      >
+      <p class="box__inStock">
         In stock:
         {{ item.inStock }}
       </p>
-
       <button
         @click="addToBasketOne(item)"
         class="box__button"
@@ -49,14 +40,15 @@
   export default {
     name: 'Product',
     computed: {
-      newProducts() {
-        return this.$store.getters.newProducts;
+      displayProducts() {
+        return this.$store.getters.updatedProducts;
       }
     },
     methods: {
       addToBasketOne(item) {
         this.$store.commit('addToBasketOne',
           {
+            id: item.id,
             name: item.name,
             quantity: 1,
             price: item.price,
@@ -64,7 +56,6 @@
       },
     },
   };
-
 </script>
 
 <style lang="scss" scoped>
@@ -91,6 +82,7 @@
       }
       &__image {
         max-width: 200px;
+        background-color: #f9f9f9;
       }
       &__input {
         width: 15%;
@@ -110,10 +102,6 @@
         &:hover {
           background-color: #5998ff;
         }
-      }
-      &:hover {
-        transition: .5s;
-        background-color: #f9f9f9;
       }
     }
   }
