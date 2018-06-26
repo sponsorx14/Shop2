@@ -80,6 +80,9 @@ export default new Vuex.Store({
     }
   },
   actions: {
+    removeFromBasket({commit}, value){
+      commit('removeFromBasket', value)
+    },
     updateResult({commit}, value) {
       commit('updateResult', value)
     },
@@ -98,7 +101,6 @@ export default new Vuex.Store({
       if (state.filteredCheckboxes.length === 0) {
         return state.products;
       }
-      console.log(state.filteredCheckboxes)
       return state.products.filter(item => state.filteredCheckboxes.includes(item.categories))
     },
     newProducts(state, getters) {

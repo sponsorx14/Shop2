@@ -3,8 +3,8 @@
     <h2>Your basket: </h2>
     <div
       v-for="item in basket"
-      class="basket__product"
       :class="[item.quantity <= 0 ? hideBasket : '']"
+      class="basket__product"
     >
       <p>
         Name:
@@ -37,9 +37,6 @@
 <script>
   export default {
     name: 'Basket',
-    data() {
-      return {}
-    },
     computed: {
       basket() {
         return this.$store.state.basket;
@@ -51,7 +48,7 @@
     methods: {
       removeFromBasket(item) {
         const price = item.price / item.quantity
-        this.$store.commit('removeFromBasket', {
+        this.$store.dispatch('removeFromBasket', {
           name: item.name,
           quantity: item.quantity,
           price: price,
