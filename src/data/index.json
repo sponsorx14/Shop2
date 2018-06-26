@@ -84,7 +84,9 @@
     "inStock": 50,
     "image": "https://cdn.x-kom.pl/i/setup/images/prod/big/product-large,xiaomi-mi-band-2-czarny-346364,pr_2017_1_25_9_18_4_730.jpg",
     "details": {
-      "screen": "0.96"
+      "screen": "0.96",
+      "memory": "No information",
+      "system": "No information"
     },
     "categories": "Xiaomi"
   },
@@ -95,7 +97,9 @@
     "inStock": 30,
     "image": "https://cdn.x-kom.pl/i/setup/images/prod/big/product-large,huawei-band-a2-czarny-394902,2017/11/pr_2017_11_24_8_20_5_657_01.jpg",
     "details": {
-      "screen": "0.96"
+      "screen": "0.96",
+      "memory": "No information",
+      "system": "No information"
     },
     "categories": "Huawei"
   },

@@ -1,6 +1,12 @@
 <template>
   <div class="basket">
     <h2>Your basket: </h2>
+    <button
+      @click="resetBasket"
+      class="basket__button"
+    >
+      Remove all
+    </button>
     <div
       v-for="item in basket"
       :class="[item.quantity <= 0 ? hideBasket : '']"
@@ -42,12 +48,12 @@
         return this.$store.state.basket;
       },
       hideBasket(){
-        return 'basket__hide'
+        return 'basket__hide';
       }
     },
     methods: {
       removeFromBasket(item) {
-        const price = item.price / item.quantity
+        const price = item.price / item.quantity;
         this.$store.dispatch('removeFromBasket', {
           name: item.name,
           quantity: item.quantity,
@@ -55,34 +61,35 @@
         });
       },
       removeFromBasketAll(item) {
-        this.$store.commit('removeFromBasketAll', {
+        this.$store.dispatch('removeFromBasketAll', {
           name: item.name,
           quantity: item.quantity
         });
+      },
+      resetBasket(){
+        this.$store.dispatch('resetBasket')
       }
     },
   };
 </script>
 
 <style lang="scss">
-
   .basket {
     width: 400px;
-
+    margin: 0 auto;
     &__product {
       border-radius: 20px;
       margin: 30px;
       padding: 30px;
       border: 2px solid #e6e6e6;
     }
-
     &__button {
       margin: 0 10px;
       border: 0;
-      background-color: #ad3030;
+      background-color: #bc2727;
       color: #fff;
       padding: 10px 15px;
-      border-radius: 20px;
+      border-radius: 10px;
       cursor: pointer;
       outline: none;
     }
@@ -90,6 +97,4 @@
       display: none;
     }
   }
-
-
 </style>

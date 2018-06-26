@@ -1,15 +1,14 @@
 <template>
   <div class="main">
-    <router-link
-      to="/"
-      class="main__button--back"
-    >
-      Go back
-    </router-link>
     <div
       v-for="item in getData"
       class="box"
     >
+      <router-link
+        to="/"
+      >
+        <i class="fas fa-arrow-circle-left"></i>
+      </router-link>
       <a
         :href="item.image" target="_blank"
       >
@@ -64,7 +63,6 @@
     computed: {
       getData() {
         const routeId = parseInt(this.$route.params.id);
-
         return this.$store.state.products.filter(item => item.id === routeId);
       }
     }
@@ -74,37 +72,32 @@
 <style lang="scss" scoped>
   .main {
     margin: 30px 0;
-    &__button--back {
-      text-decoration: none;
-      border: 0;
-      background-color: #4286f4;
-      color: #fff;
-      padding: 10px 15px;
-      border-radius: 20px;
-      cursor: pointer;
-      outline: none;
-    }
-  }
-  .box {
-    border: 2px solid #e6e6e6;
-    padding: 20px;
-    margin: 30px auto;
-    max-width: 600px;
-    border-radius: 20px;
-    &__image {
+
+    .box {
+      border: 2px solid #e6e6e6;
+      padding: 20px;
+      margin: 30px auto;
       max-width: 600px;
-    }
-    &__name {
-      font-size: 24px;
-    }
-    &__price {
-      font-size: 20px;
-    }
-    &__stock {
-      color: #bc2121;
-    }
-    &__details {
-      font-size: 20px;
+      border-radius: 20px;
+      .fas {
+        color: #c1c1c1;
+        font-size: 50px;
+      }
+      &__image {
+        max-width: 600px;
+      }
+      &__name {
+        font-size: 24px;
+      }
+      &__price {
+        font-size: 20px;
+      }
+      &__stock {
+        color: #bc2121;
+      }
+      &__details {
+        font-size: 20px;
+      }
     }
   }
 

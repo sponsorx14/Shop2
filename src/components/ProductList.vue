@@ -1,6 +1,5 @@
 <template>
   <main>
-    <h1>Welcome to the shop</h1>
     <Filters></Filters>
     <div class="container">
       <Product></Product>
@@ -19,7 +18,7 @@
     components: {
       Product,
       Basket,
-      Filters
+      Filters,
     }
   };
 </script>
@@ -27,6 +26,7 @@
 <style lang="scss" scoped>
   main {
     padding: 30px;
+    position: relative;
     h1 {
       margin-bottom: 50px;
     }

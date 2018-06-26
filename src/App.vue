@@ -1,27 +1,34 @@
 <template>
   <div id="app">
+    <Information></Information>
     <router-view/>
   </div>
 </template>
 
 <script>
-import ProductList from './components/ProductList.vue';
+  import ProductList from './components/ProductList.vue';
+  import Information from './components/Information.vue';
 
-export default({
-  name: 'App',
-  components: {
-    ProductList,
-  },
-});
+  export default ({
+    name: 'App',
+    components: {
+      ProductList,
+      Information
+    },
+  });
 
 </script>
 
 <style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+  body {
+    margin: 0;
+  }
+  #app {
+    margin-top: 100px;
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2c3e50;
+  }
 </style>
