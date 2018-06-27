@@ -5,7 +5,7 @@
         <i class="fas fa-info-circle"></i>
         <button>
           <i
-              @click="removeModal($event)"
+              @click="removeModal(item)"
               class="fas fa-times"
           ></i>
         </button>
@@ -67,8 +67,8 @@
     },
     methods: {
       addToBasketOne(item) {
-        this.modalData.push(item);
-        this.displayModal(item);
+        this.modalData.push(Object.assign({}, item));
+        this.displayModal();
         this.$store.commit('addToBasketOne',
           {
             id: item.id,
@@ -81,10 +81,11 @@
         const data = this.modalData;
         setTimeout(function(){
           data.shift();
-        },2000)
+        },5000)
       },
-      removeModal($event){
-        console.log(this.modalData.indexOf())
+      removeModal(item){
+        const modalId = this.modalData.indexOf(item);
+        this.modalData.splice(modalId, 1);
       }
     },
   };
