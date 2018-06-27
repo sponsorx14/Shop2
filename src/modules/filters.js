@@ -89,7 +89,7 @@ const getters = {
           return 0;
         }
         if (state.sortName === 'default') {
-          return store.state.products;
+          return 0;
         }
       });
     return filter;

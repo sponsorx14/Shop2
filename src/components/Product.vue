@@ -1,9 +1,20 @@
 <template>
   <div class="product-container">
     <div class="modal">
-      <p>
-        Ima modal
-      </p>
+      <div class="modal--item" v-for="item in modalData">
+        <i class="fas fa-info-circle"></i>
+        <button>
+          <i
+              @click="removeModal($event)"
+              class="fas fa-times"
+          ></i>
+        </button>
+        <p>
+          Your product:
+          <span> {{ item.name }}</span>
+          has been successfully added into your basket!
+        </p>
+      </div>
     </div>
     <h2> Available products: </h2>
     <div
@@ -46,7 +57,7 @@
     name: 'Product',
     data(){
       return {
-        modalData: {}
+        modalData: [],
       }
     },
     computed: {
@@ -56,6 +67,8 @@
     },
     methods: {
       addToBasketOne(item) {
+        this.modalData.push(item);
+        this.displayModal(item);
         this.$store.commit('addToBasketOne',
           {
             id: item.id,
@@ -64,6 +77,15 @@
             price: item.price,
           });
       },
+      displayModal(){
+        const data = this.modalData;
+        setTimeout(function(){
+          data.shift();
+        },2000)
+      },
+      removeModal($event){
+        console.log(this.modalData.indexOf())
+      }
     },
   };
 </script>
@@ -76,9 +98,46 @@
     flex-direction: column;
     margin: 0 auto;
     .modal {
-      position: absolute;
-      top: 0;
+      position: fixed;
+      top: 100px;
       right: 0;
+      margin: 0 5px;
+      &--item {
+        position: relative;
+        border-radius: 10px;
+        margin: 0 0 10px;
+        line-height: 28px;
+        padding: 10px 30px;
+        background-color: $green;
+        .fa-info-circle,
+        .fa-times {
+          font-size: 36px;
+          position: absolute;
+          color: $white;
+        }
+        .fa-info-circle {
+          top: 0;
+          left: 0;
+          transform: translate(25%, 25%);
+        }
+        .fa-times {
+          cursor: pointer;
+          right: 0;
+          top: 0;
+          transform: translate(-50%, 25%);
+        }
+        button {
+          border: 0;
+          padding: 0;
+        }
+        p {
+          padding-bottom: 10px;
+        }
+        span {
+          display: block;
+          font-weight: bold;
+        }
+      }
     }
     .box {
       position: relative;
