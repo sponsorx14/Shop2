@@ -57,20 +57,21 @@ const mutations = {
   resetBasket(state) {
     state.totalPrice = 0;
     state.basket = [];
-    state.basketQuantity = 0
-  }
+    state.basketQuantity = 0;
+  },
+
 };
 
 const actions = {
   removeFromBasketOne({commit}, value) {
-    commit('removeFromBasketOne', value)
+    commit('removeFromBasketOne', value);
   },
   removeFromBasketAll({commit}, value) {
-    commit('removeFromBasketAll', value)
+    commit('removeFromBasketAll', value);
   },
   resetBasket({commit}) {
-    commit('resetBasket')
-  }
+    commit('resetBasket');
+  },
 };
 
 export default {

@@ -2,19 +2,19 @@
   <div class="product-container">
     <h2> Available products: </h2>
     <div
-      v-for="item in displayProducts"
-      :key="item.id"
-      class="box"
+        v-for="item in displayProducts"
+        :key="item.id"
+        class="box"
     >
       <router-link
-        :to="{name: 'details', params: {id: item.id}}"
+          :to="{name: 'details', params: {id: item.id}}"
       >
         <i class="fas fa-info-circle"></i>
       </router-link>
       <img
-        :src="item.image"
-        class="box__image"
-        alt="phone_img"
+          :src="item.image"
+          class="box__image"
+          alt="phone_img"
       >
       <p class="box__name">
         {{ item.name }}
@@ -27,8 +27,8 @@
         {{ item.inStock }}
       </p>
       <button
-        @click="addToBasketOne(item)"
-        class="box__button"
+          @click="addToBasketOne(item)"
+          class="box__button"
       >
         Buy one
       </button>
@@ -59,6 +59,7 @@
 </script>
 
 <style lang="scss" scoped>
+  @import '../styles/colors.scss';
 
   .product-container {
     display: flex;
@@ -66,14 +67,13 @@
     margin: 0 auto;
     .box {
       position: relative;
-      transition: .5s;
-      border: 2px solid #e6e6e6;
+      border: 2px solid $dark-white;
       padding: 20px;
       margin: 20px;
       border-radius: 20px;
       .fas {
-        color: #c1c1c1;
-        background-color: #fff;
+        color: $grey2;
+        background-color: $white;
         font-size: 50px;
         position: absolute;
         top: 0;
@@ -82,10 +82,6 @@
       }
       &__image {
         max-width: 200px;
-        background-color: #f9f9f9;
-      }
-      &__input {
-        width: 15%;
       }
       &__button {
         margin: 10px auto;
@@ -93,14 +89,16 @@
         max-width: 100px;
         display: block;
         border: 0;
-        background-color: #4286f4;
-        color: #fff;
+        background-color: $blue;
+        color: $white;
         padding: 10px 15px;
         border-radius: 10px;
         cursor: pointer;
         outline: none;
+        transition: .2s;
         &:hover {
-          background-color: #5998ff;
+          background-color: $light-blue;
+          transition: .2s;
         }
       }
     }

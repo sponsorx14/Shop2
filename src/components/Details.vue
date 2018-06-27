@@ -57,16 +57,18 @@
 </script>
 
 <style lang="scss" scoped>
+  @import '../styles/colors.scss';
+
   .main {
     margin: 30px 0;
     .box {
-      border: 2px solid #e6e6e6;
+      border: 2px solid $dark-white;
       padding: 20px;
       margin: 30px auto;
       max-width: 600px;
       border-radius: 20px;
       .fas {
-        color: #c1c1c1;
+        color: $grey2;
         font-size: 50px;
       }
       &__image {
@@ -79,7 +81,7 @@
         font-size: 20px;
       }
       &__stock {
-        color: #bc2121;
+        color: $deep-red;
       }
       &__details {
         font-size: 20px;

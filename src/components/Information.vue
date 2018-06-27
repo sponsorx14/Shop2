@@ -2,19 +2,19 @@
   <div class="information">
     <ul class="information__list">
       <router-link
-        to="/"
-        activeClass="active"
-        class="information__list__item"
-        tag="li"
-        exact
+          to="/"
+          activeClass="active"
+          class="information__list__item"
+          tag="li"
+          exact
       >
         Home
       </router-link>
       <router-link
-        to="/basket"
-        activeClass="active"
-        class="information__list__item"
-        tag="li"
+          to="/basket"
+          activeClass="active"
+          class="information__list__item"
+          tag="li"
       >
         Basket
         ({{ basketQuantity }})
@@ -43,12 +43,14 @@
 </script>
 
 <style lang="scss" scoped>
+  @import '../styles/colors.scss';
+
   .information {
-    top: 0;
     position: fixed;
+    top: 0;
     z-index: 2;
     width: 100%;
-    background-color: #adadad;
+    background-color: $deep-grey;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -59,11 +61,10 @@
       padding: 10px;
       display: flex;
       &__item {
-        transition: .4s;
         padding: 10px 25px;
         margin-right: 5px;
         list-style: none;
-        background-color: #c1c1c1;
+        background-color: $grey2;
         cursor: pointer;
       }
     }
@@ -72,8 +73,7 @@
       margin: 0
     }
   }
-
   .active {
-    background-color: #d8a61c;
+    background-color: $yellow;
   }
 </style>

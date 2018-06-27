@@ -5,6 +5,8 @@ const state = {
   filterCheckboxes: [],
   filterPriceFrom: 0,
   filterPriceTo: 9999,
+  sortedProducts: [],
+  sortName: ''
 };
 
 const mutations = {
@@ -23,22 +25,29 @@ const mutations = {
     state.filterCheckboxes = []
     state.filterPriceFrom = 0;
     state.filterPriceTo = 9999;
+  },
+  sortProducts(state, value) {
+    state.sortedProducts = store.state.products;
+    state.sortName = value;
   }
 };
 
 const actions = {
   filterName({commit}, value) {
-    commit('filterName', value)
+    commit('filterName', value);
   },
   filterCheckbox({commit}, value) {
-    commit('filterCheckbox', value)
+    commit('filterCheckbox', value);
   },
   filterPrice({commit}, value) {
-    commit('filterPrice', value)
+    commit('filterPrice', value);
   },
   resetFilters({commit}) {
-    commit('resetFilters')
+    commit('resetFilters');
   },
+  sortProducts({ commit }, value){
+    commit('sortProducts', value);
+  }
 };
 
 const getters = {
@@ -50,6 +59,7 @@ const getters = {
   },
   updatedProducts(state, getters) {
     const filteredCheckboxs = getters.filteredCheckboxes;
+    const sortedProducts = getters.sortedProducts;
 
     const filteredByName = filteredCheckboxs.filter(item => {
       return item.name.toLowerCase().includes(state.filterName.toLowerCase());
@@ -59,8 +69,43 @@ const getters = {
         return item
       }
     });
-
     return filteredByPrice;
+  },
+  getSortedProducts() {
+      // filterPriceFrom: 0,
+      // filterPriceTo: 9999,
+      // sortedProducts: [],
+      // sortName: ''
+
+    return this.state.products.filter().sort()
+  },
+  sortedProducts(state){
+    if(state.sortName === 'alphabetic') {
+      state.sortedProducts.sort((a,b) => {
+        let nameA = a.name.toLowerCase();
+        let nameB = b.name.toLowerCase();
+        if(nameA < nameB){
+          return -1;
+        }
+        if(nameA > nameB){
+          return 1;
+        }
+        return 0;
+      });
+    }
+    if(state.sortName === 'priceLowToHigh') {
+      state.sortedProducts.sort((a,b) => {
+        let priceA = a.price;
+        let priceB = b.price;
+        if(priceA < priceB){
+          return -1;
+        }
+        if(priceA > priceB){
+          return 1;
+        }
+        return 0;
+      });
+    }
   }
 };
 

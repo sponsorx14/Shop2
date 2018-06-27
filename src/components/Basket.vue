@@ -76,7 +76,9 @@
   };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+  @import '../styles/colors.scss';
+
   .basket {
     width: 400px;
     margin: 0 auto;
@@ -84,15 +86,15 @@
       border-radius: 20px;
       margin: 30px;
       padding: 30px;
-      border: 2px solid #e6e6e6;
+      border: 2px solid $light-grey;
     }
     &__button {
       margin: 0 10px;
+      padding: 10px 15px;
       border: 0;
       border-radius: 10px;
-      background-color: #bc2727;
-      color: #fff;
-      padding: 10px 15px;
+      background-color: $deep-red;
+      color: $white;
       cursor: pointer;
       outline: none;
     }

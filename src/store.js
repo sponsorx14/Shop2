@@ -14,8 +14,7 @@ export default new Vuex.Store({
   },
   actions: {
   },
-  getters: {
-  },
+  getters: {},
   modules: {
     basketModule: basket,
     filtersModule: filters,
