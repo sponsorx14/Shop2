@@ -58,6 +58,7 @@
     data(){
       return {
         modalData: [],
+        timer: null
       }
     },
     computed: {
@@ -68,7 +69,7 @@
     methods: {
       addToBasketOne(item) {
         this.modalData.push(Object.assign({}, item));
-        this.displayModal();
+        this.displayModal(item);
         this.$store.commit('addToBasketOne',
           {
             id: item.id,
@@ -77,13 +78,15 @@
             price: item.price,
           });
       },
-      displayModal(){
+      displayModal(item){
         const data = this.modalData;
-        setTimeout(function(){
-          data.shift();
-        },5000)
+        const modalId = this.modalData.indexOf(item);
+        this.timer =  setTimeout(function(){
+          data.splice(modalId, 1);
+        },5000);
       },
       removeModal(item){
+        clearTimeout(this.timer);
         const modalId = this.modalData.indexOf(item);
         this.modalData.splice(modalId, 1);
       }
