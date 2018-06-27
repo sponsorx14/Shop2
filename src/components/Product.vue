@@ -58,7 +58,7 @@
     data(){
       return {
         modalData: [],
-        timer: null
+        timer: null,
       }
     },
     computed: {
