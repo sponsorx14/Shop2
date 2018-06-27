@@ -1,5 +1,10 @@
 <template>
   <div class="product-container">
+    <div class="modal">
+      <p>
+        Ima modal
+      </p>
+    </div>
     <h2> Available products: </h2>
     <div
         v-for="item in displayProducts"
@@ -39,9 +44,14 @@
 <script>
   export default {
     name: 'Product',
+    data(){
+      return {
+        modalData: {}
+      }
+    },
     computed: {
       displayProducts() {
-        return this.$store.getters.updatedProducts;
+        return this.$store.getters.getSortedProducts;
       }
     },
     methods: {
@@ -65,6 +75,11 @@
     display: flex;
     flex-direction: column;
     margin: 0 auto;
+    .modal {
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
     .box {
       position: relative;
       border: 2px solid $dark-white;

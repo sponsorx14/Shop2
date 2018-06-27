@@ -86,7 +86,7 @@
           name="sort-by"
           class="main__filters--dropdown--select"
       >
-        <option value="" selected>
+        <option value="default" selected>
           Default
         </option>
         <option value="alphabetic">
@@ -109,11 +109,6 @@
 <script>
   export default {
     name: "Filters",
-    data(){
-      return {
-        selectedOption: ''
-      }
-    },
     methods: {
       resetFilters() {
         this.$store.dispatch('resetFilters');
@@ -122,7 +117,7 @@
     computed: {
       filterName: {
         get() {
-          return null;
+          return this.$store.state.filtersModule.filterName;
         },
         set(value) {
           this.$store.dispatch('filterName', value);
@@ -130,7 +125,10 @@
       },
       filterPriceFrom: {
         get() {
-          return null;
+          if(this.$store.state.filtersModule.filterPriceFrom === 0){
+            return null;
+          }
+          return this.$store.state.filtersModule.filterPriceFrom;
         },
         set(value) {
           const values = {
@@ -141,7 +139,10 @@
       },
       filterPriceTo: {
         get() {
-          return null;
+          if(this.$store.state.filtersModule.filterPriceTo === 9999){
+            return null;
+          }
+          return this.$store.state.filtersModule.filterPriceTo;
         },
         set(value) {
           const values = {
@@ -159,17 +160,14 @@
         }
       },
       sortProducts: {
-        get(){
-          return this.selectedOption;
+        get() {
+          return this.$store.state.filtersModule.sortName;
         },
-        set(value){
+        set(value) {
           this.$store.dispatch('sortProducts', value);
         }
       }
     },
-    updated(){
-      console.log(this.selectedOption)
-    }
   };
 </script>
 
@@ -222,7 +220,7 @@
     }
     &__button {
       padding: 10px;
-      margin: 10px;
+      margin: 20px;
       border: 0;
       background-color: $deep-red;
       color: $white;
