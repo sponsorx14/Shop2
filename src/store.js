@@ -4,6 +4,7 @@ import data from './data/index.json';
 import basket from './modules/basket';
 import filters from './modules/filters';
 import modal from './modules/modal';
+import pagination from './modules/pagination';
 
 Vue.use(Vuex);
 
@@ -19,6 +20,7 @@ export default new Vuex.Store({
   modules: {
     basketModule: basket,
     filtersModule: filters,
-    modalModule: modal
+    modalModule: modal,
+    paginationModal: pagination
   },
 });

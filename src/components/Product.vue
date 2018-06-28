@@ -41,7 +41,11 @@
     name: 'Product',
     computed: {
       displayProducts() {
-        return this.$store.getters.getSortedProducts;
+        const data = this.$store.getters.getSortedProducts;
+        const indexStart = this.$store.state.paginationModal.range.from;
+        const indexEnd = this.$store.state.paginationModal.range.to;
+        this.$store.dispatch('showPages', data.length);
+        return data.slice(indexStart,indexEnd)
       }
     },
     methods: {

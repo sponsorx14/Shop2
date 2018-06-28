@@ -1,27 +1,27 @@
 <template>
   <main>
     <Filters></Filters>
+    <Pagination></Pagination>
     <div class="container">
       <Modal></Modal>
       <Product></Product>
-      <Basket></Basket>
     </div>
   </main>
 </template>
 
 <script>
   import Product from './Product.vue';
-  import Basket from './Basket.vue';
   import Filters from './Filters.vue';
   import Modal from './Modal.vue';
+  import Pagination from './Pagination.vue';
 
   export default {
     name: 'ProductList',
     components: {
       Product,
-      Basket,
       Filters,
-      Modal
+      Modal,
+      Pagination
     },
   };
 </script>

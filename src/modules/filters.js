@@ -24,6 +24,10 @@ const mutations = {
     state.filterCheckboxes = [];
     state.filterPriceFrom = 0;
     state.filterPriceTo = 9999;
+    state.sortName = 'default';
+    store.state.paginationModal.currentPage = 1;
+    store.state.paginationModal.range.from = 0;
+    store.state.paginationModal.range.to = 5;
   },
   sortProducts(state, value) {
     state.sortName = value;
@@ -67,28 +71,30 @@ const getters = {
       })
       .sort((a, b) => {
         if (state.sortName === 'alphabetic') {
-          const nameA = a.name;
-          const nameB = b.name;
-          if (nameA < nameB) {
+          if (a.name < b.name) {
             return -1;
           }
-          if (nameA > nameB) {
+          if (a.name > b.name) {
             return 1;
           }
           return 0;
         }
         if (state.sortName === 'priceLowToHigh') {
-          let priceA = a.price;
-          let priceB = b.price;
-          if (priceA < priceB) {
+          if (a.price < b.price) {
             return -1;
           }
-          if (priceA > priceB) {
+          if (a.price > b.price) {
             return 1;
           }
           return 0;
         }
         if (state.sortName === 'default') {
+          if (a.id < b.id) {
+            return -1;
+          }
+          if (a.id > b.id) {
+            return 1;
+          }
           return 0;
         }
       });
