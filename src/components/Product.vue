@@ -1,25 +1,5 @@
 <template>
   <div class="product-container">
-    <div class="modal">
-      <transition-group name="fade" tag="div">
-        <div class="modal--item" :key="index" v-if="show" v-for="(item, index) in modalData">
-          <div >
-            <i class="fas fa-info-circle"></i>
-            <button>
-              <i
-                  @click="removeModal(item, index)"
-                  class="fas fa-times"
-              ></i>
-            </button>
-            <p>
-              Your product:
-              <span> {{ item.name }}</span>
-              has been successfully added into your basket!
-            </p>
-          </div>
-        </div>
-      </transition-group>
-    </div>
     <h2> Available products: </h2>
     <div
         v-for="item in displayProducts"
@@ -59,13 +39,6 @@
 <script>
   export default {
     name: 'Product',
-    data() {
-      return {
-        modalData: [],
-        timer: null,
-        show: false,
-      }
-    },
     computed: {
       displayProducts() {
         return this.$store.getters.getSortedProducts;
@@ -73,9 +46,7 @@
     },
     methods: {
       addToBasketOne(item) {
-        this.show = true;
-        this.modalData.push(item);
-        this.displayModal();
+        this.$store.dispatch('displayModal', item);
         this.$store.commit('addToBasketOne',
           {
             id: item.id,
@@ -84,69 +55,17 @@
             price: item.price,
           });
       },
-      displayModal() {
-        const data = this.modalData;
-        this.timer = setTimeout(function () {
-          data.shift();
-        }, 3000);
-      },
-      removeModal(index) {
-        clearTimeout(this.timer);
-        this.modalData.splice(index, 1);
-      }
     },
   };
 </script>
 
 <style lang="scss" scoped>
   @import '../styles/colors.scss';
-
   .product-container {
     display: flex;
     flex-direction: column;
     margin: 0 auto;
-    .modal {
-      position: fixed;
-      top: 100px;
-      right: 0;
-      margin: 0 5px;
-      &--item {
-        position: relative;
-        border-radius: 10px;
-        margin: 0 0 10px;
-        line-height: 28px;
-        padding: 10px 30px;
-        background-color: $green;
-        .fa-info-circle,
-        .fa-times {
-          font-size: 36px;
-          position: absolute;
-          color: $white;
-        }
-        .fa-info-circle {
-          top: 0;
-          left: 0;
-          transform: translate(25%, 25%);
-        }
-        .fa-times {
-          cursor: pointer;
-          right: 0;
-          top: 0;
-          transform: translate(-50%, 25%);
-        }
-        button {
-          border: 0;
-          padding: 0;
-        }
-        p {
-          padding-bottom: 10px;
-        }
-        span {
-          display: block;
-          font-weight: bold;
-        }
-      }
-    }
+
     .box {
       position: relative;
       border: 2px solid $dark-white;
@@ -186,13 +105,5 @@
     }
   }
 
-  .fade-leave-active,
-  .fade-enter-active {
-    transition: opacity 1s;
-  }
 
-  .fade-enter,
-  .fade-leave-to {
-    opacity: 0;
-  }
 </style>

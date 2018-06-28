@@ -2,6 +2,7 @@
   <main>
     <Filters></Filters>
     <div class="container">
+      <Modal></Modal>
       <Product></Product>
       <Basket></Basket>
     </div>
@@ -12,6 +13,7 @@
   import Product from './Product.vue';
   import Basket from './Basket.vue';
   import Filters from './Filters.vue';
+  import Modal from './Modal.vue';
 
   export default {
     name: 'ProductList',
@@ -19,7 +21,8 @@
       Product,
       Basket,
       Filters,
-    }
+      Modal
+    },
   };
 </script>
 
