@@ -36,7 +36,7 @@
       "memory": "64 GB",
       "system": "iOS 11"
     },
-    "categories": "Iphone"
+    "categories": "Apple"
   },
   {
     "id": 4,
@@ -166,7 +166,7 @@
       "memory": "64 GB",
       "system": "iOS 11"
     },
-    "categories": "Iphone"
+    "categories": "Apple"
   },
   {
     "id": 14,
@@ -192,7 +192,7 @@
       "memory": "32 GB",
       "system": "iOS 10"
     },
-    "categories": "Iphone"
+    "categories": "Apple"
   },
   {
     "id": 16,
@@ -283,7 +283,7 @@
       "memory": "No information",
       "system": "WatchOS"
     },
-    "categories": "Iphone"
+    "categories": "Apple"
   },
   {
     "id": 23,
@@ -296,7 +296,7 @@
       "memory": "No information",
       "system": "WatchOS"
     },
-    "categories": "Iphone"
+    "categories": "Apple"
   },
   {
     "id": 24,
@@ -322,6 +322,6 @@
       "memory": "32 GB",
       "system": "iOS 10"
     },
-    "categories": "Iphone"
+    "categories": "Apple"
   }
 ]
