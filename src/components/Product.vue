@@ -1,20 +1,24 @@
 <template>
   <div class="product-container">
     <div class="modal">
-      <div class="modal--item" v-for="item in modalData">
-        <i class="fas fa-info-circle"></i>
-        <button>
-          <i
-              @click="removeModal(item)"
-              class="fas fa-times"
-          ></i>
-        </button>
-        <p>
-          Your product:
-          <span> {{ item.name }}</span>
-          has been successfully added into your basket!
-        </p>
-      </div>
+      <transition-group name="fade" tag="div">
+        <div class="modal--item" :key="index" v-if="show" v-for="(item, index) in modalData">
+          <div >
+            <i class="fas fa-info-circle"></i>
+            <button>
+              <i
+                  @click="removeModal(item, index)"
+                  class="fas fa-times"
+              ></i>
+            </button>
+            <p>
+              Your product:
+              <span> {{ item.name }}</span>
+              has been successfully added into your basket!
+            </p>
+          </div>
+        </div>
+      </transition-group>
     </div>
     <h2> Available products: </h2>
     <div
@@ -55,10 +59,11 @@
 <script>
   export default {
     name: 'Product',
-    data(){
+    data() {
       return {
         modalData: [],
         timer: null,
+        show: false,
       }
     },
     computed: {
@@ -68,8 +73,9 @@
     },
     methods: {
       addToBasketOne(item) {
-        this.modalData.push(Object.assign({}, item));
-        this.displayModal(item);
+        this.show = true;
+        this.modalData.push(item);
+        this.displayModal();
         this.$store.commit('addToBasketOne',
           {
             id: item.id,
@@ -78,17 +84,15 @@
             price: item.price,
           });
       },
-      displayModal(item){
+      displayModal() {
         const data = this.modalData;
-        const modalId = this.modalData.indexOf(item);
-        this.timer =  setTimeout(function(){
-          data.splice(modalId, 1);
-        },5000);
+        this.timer = setTimeout(function () {
+          data.shift();
+        }, 3000);
       },
-      removeModal(item){
+      removeModal(index) {
         clearTimeout(this.timer);
-        const modalId = this.modalData.indexOf(item);
-        this.modalData.splice(modalId, 1);
+        this.modalData.splice(index, 1);
       }
     },
   };
@@ -180,5 +184,15 @@
         }
       }
     }
+  }
+
+  .fade-leave-active,
+  .fade-enter-active {
+    transition: opacity 1s;
+  }
+
+  .fade-enter,
+  .fade-leave-to {
+    opacity: 0;
   }
 </style>
