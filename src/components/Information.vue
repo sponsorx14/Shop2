@@ -19,6 +19,14 @@
         Basket
         ({{ basketQuantity }})
       </router-link>
+      <router-link
+          to="/form"
+          activeClass="active"
+          class="information__list__item"
+          tag="li"
+      >
+        New item
+      </router-link>
     </ul>
     <p class="information__total">
       Total:
@@ -50,7 +58,7 @@
     top: 0;
     z-index: 2;
     width: 100%;
-    background-color: $deep-grey;
+    background-color: $dark-white;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -64,7 +72,7 @@
         padding: 10px 25px;
         margin-right: 5px;
         list-style: none;
-        background-color: $grey2;
+        background-color: $grey;
         cursor: pointer;
       }
     }

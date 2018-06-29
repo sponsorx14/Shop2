@@ -65,6 +65,7 @@
       },
       removeFromBasketAll(item) {
         this.$store.dispatch('removeFromBasketAll', {
+          id: item.id,
           name: item.name,
           quantity: item.quantity
         });

@@ -27,7 +27,7 @@ const mutations = {
     state.sortName = 'default';
     store.state.paginationModal.currentPage = 1;
     store.state.paginationModal.range.from = 0;
-    store.state.paginationModal.range.to = 5;
+    store.state.paginationModal.range.to = 10;
   },
   sortProducts(state, value) {
     state.sortName = value;

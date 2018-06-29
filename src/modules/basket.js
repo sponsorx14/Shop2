@@ -55,10 +55,17 @@ const mutations = {
     });
   },
   resetBasket(state) {
+    store.state.products.filter(item => {
+      state.basket.filter(basket => {
+        if (item.id === basket.id) {
+          item.inStock += basket.quantity;
+        }
+      });
+    });
     state.totalPrice = 0;
     state.basket = [];
     state.basketQuantity = 0;
-  },
+  }
 
 };
 
@@ -78,4 +85,4 @@ export default {
   state,
   mutations,
   actions,
-}
+};

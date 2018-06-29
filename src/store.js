@@ -5,12 +5,13 @@ import basket from './modules/basket';
 import filters from './modules/filters';
 import modal from './modules/modal';
 import pagination from './modules/pagination';
+import newItem from './modules/newItem';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    products: data,
+    products: data.data,
   },
   mutations: {
   },
@@ -21,6 +22,7 @@ export default new Vuex.Store({
     basketModule: basket,
     filtersModule: filters,
     modalModule: modal,
-    paginationModal: pagination
+    paginationModal: pagination,
+    newItemModule: newItem
   },
 });

@@ -1,6 +1,7 @@
 <template>
   <main>
     <Filters></Filters>
+    <Pagination></Pagination>
     <div class="container">
       <Modal></Modal>
       <Product></Product>

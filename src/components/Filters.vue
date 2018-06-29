@@ -4,7 +4,7 @@
         @click="showFilters = !showFilters"
         class="show-filters"
     >
-      Show filters
+      {{ showFilters ? 'Hide filters' : 'Show filters'}}
     </button>
     <transition enter-active-class="fadeIn" leave-active-class="fadeOut">
       <div v-if="showFilters" class="main__filters">
@@ -230,7 +230,9 @@
     cursor: pointer;
     margin-bottom: 20px;
     outline: none;
+    transition: .5s;
     &:hover {
+      transition: .5s;
       background-color: $light-yellow;
       box-shadow: 0px 3px 10px 5px #97B1BF;
     }

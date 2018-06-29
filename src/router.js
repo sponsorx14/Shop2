@@ -3,6 +3,7 @@ import Router from 'vue-router';
 import ProductList from './components/ProductList.vue';
 import Details from './components/Details.vue';
 import Basket from './components/Basket.vue';
+import Form from './components/Form.vue';
 
 Vue.use(Router);
 
@@ -23,6 +24,11 @@ export default new Router({
       path: '/basket',
       name: 'basket',
       component: Basket
+    },
+    {
+      path: '/form',
+      name: 'form',
+      component: Form
     }
   ],
 });
