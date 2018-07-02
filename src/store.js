@@ -13,8 +13,7 @@ export default new Vuex.Store({
   state: {
     products: data.data,
   },
-  mutations: {
-  },
+  mutations: {},
   actions: {
   },
   getters: {},

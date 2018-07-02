@@ -1,7 +1,7 @@
 <template>
   <div class="main">
     <div
-      v-for="item in showDatails"
+      v-for="item in showDetails"
       class="box"
     >
       <router-link to="/">
@@ -48,8 +48,8 @@
   export default {
     name: "Details",
     computed: {
-      showDatails() {
-        const routeId = parseInt(this.$route.params.id);
+      showDetails() {
+        const routeId = this.$route.params.id;
         return this.$store.state.products.filter(item => item.id === routeId);
       }
     }
@@ -57,7 +57,7 @@
 </script>
 
 <style lang="scss" scoped>
-  @import '../styles/colors.scss';
+  @import '../styles/colors';
 
   .main {
     margin: 30px 0;

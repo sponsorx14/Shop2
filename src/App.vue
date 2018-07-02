@@ -6,7 +6,7 @@
 </template>
 
 <script>
-  import ProductList from './components/ProductList.vue';
+  import ProductList from './views/ProductsList.vue';
   import Information from './components/Information.vue';
 
   export default ({
@@ -14,7 +14,7 @@
     components: {
       ProductList,
       Information
-    },
+    }
   });
 
 </script>

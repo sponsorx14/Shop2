@@ -1,11 +1,17 @@
-import axios from 'axios';
-const ROOT_URL = 'http://localhost:3000/data';
+import store from '../store';
 
-const actions = {
-  submitNewItem({commit }, value){
-    axios.post(`${ROOT_URL}`, Object.assign({}, value));
+const mutations = {
+  submitItem(state, value){
+    store.state.products.push(value)
   }
 };
+
+const actions = {
+  submitItem({commit}, value) {
+    commit('submitItem', value)
+  },
+};
 export default {
+  mutations,
   actions,
 };

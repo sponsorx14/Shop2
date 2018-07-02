@@ -78,7 +78,7 @@
 </script>
 
 <style lang="scss" scoped>
-  @import '../styles/colors.scss';
+  @import '../styles/colors';
 
   .basket {
     width: 400px;

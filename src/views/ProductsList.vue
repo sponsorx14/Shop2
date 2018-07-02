@@ -11,10 +11,10 @@
 </template>
 
 <script>
-  import Product from './Product.vue';
-  import Filters from './Filters.vue';
-  import Modal from './Modal.vue';
-  import Pagination from './Pagination.vue';
+  import Product from '../components/ProductItem.vue';
+  import Filters from '../components/Filters.vue';
+  import Modal from '../components/Modal.vue';
+  import Pagination from '../components/Pagination.vue';
 
   export default {
     name: 'ProductList',

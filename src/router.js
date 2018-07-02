@@ -1,9 +1,9 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import ProductList from './components/ProductList.vue';
-import Details from './components/Details.vue';
-import Basket from './components/Basket.vue';
-import Form from './components/Form.vue';
+import ProductList from './views/ProductsList.vue';
+import Details from './views/Details.vue';
+import Basket from './views/Basket.vue';
+import Form from './views/Form.vue';
 
 Vue.use(Router);
 

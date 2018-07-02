@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <form class="form">
+    <form class="form" @submit="onSubmit" novalidate>
       <label>Category:</label>
       <select
           v-model="newItem.category"
@@ -127,8 +127,8 @@
           id="form__input--details--system"
           type="text">
       <button
-          @click="onSubmit($event)"
-          class="form__button-submit">
+          class="form__button-submit"
+      >
         Upload
       </button>
     </form>
@@ -137,12 +137,13 @@
 
 <script>
   import _ from 'lodash';
-
+  import {uuid } from 'vue-uuid'
   export default {
     name: "Form",
     data() {
       return {
         newItem: {
+          id: uuid.v4(),
           category: null,
           name: '',
           price: null,
@@ -159,14 +160,13 @@
       }
     },
     methods: {
-      onSubmit($event) {
-        $event.preventDefault();
+      onSubmit(event) {
+        event.preventDefault();
         this.submitted = true;
         this.validateForm();
-        console.log(this.errors)
         if (_.isEmpty(this.errors)) {
-          // this.$store.dispatch('submitNewItem', this.newItem);
-          // this.$router.push('/')
+          this.$store.dispatch('submitItem', this.newItem);
+          this.$router.push('/')
         }
       },
       validateForm() {
@@ -236,7 +236,7 @@
 </script>
 
 <style lang="scss" scoped>
-  @import '../styles/colors.scss';
+  @import '../styles/colors';
 
   .container {
     max-width: 1200px;
