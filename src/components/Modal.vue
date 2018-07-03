@@ -1,17 +1,28 @@
 <template>
   <div class="modal">
-    <transition-group name="fadeIn" enter-active-class="fadeIn" leave-active-class="fadeOut" tag="div">
-      <div class="modal--item" :key="index" v-for="(item, index) in modalData">
+    <transition-group
+        name="fadeIn"
+        enter-active-class="fadeIn"
+        leave-active-class="fadeOut"
+        tag="div"
+    >
+      <div
+          v-for="(item, index) in modalData"
+          :key="index"
+          class="modal--item"
+      >
         <i class="fas fa-info-circle"></i>
-        <button>
+        <button class="modal--item__button">
           <i
               @click="removeModal(item, index)"
               class="fas fa-times"
           ></i>
         </button>
-        <p>
+        <p class="modal--item--text">
           Your product:
-          <span> {{ item.name }}</span>
+          <span class="modal--item--text--name">
+            {{ item.name }}
+          </span>
           has been successfully added into your basket!
         </p>
       </div>
@@ -21,7 +32,7 @@
 
 <script>
   export default {
-    name: "Modal",
+    name: 'Modal',
     data() {
       return {
         modalData: this.$store.state.modalModule.modalData,
@@ -68,16 +79,16 @@
         top: 0;
         transform: translate(-50%, 25%);
       }
-      button {
+      &__button {
         border: 0;
         padding: 0;
       }
-      p {
+      &--text {
         padding-bottom: 10px;
-      }
-      span {
-        display: block;
-        font-weight: bold;
+        &--name {
+          display: block;
+          font-weight: bold;
+        }
       }
     }
   }

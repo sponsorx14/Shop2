@@ -1,17 +1,17 @@
 import axios from 'axios';
 
-const mutations = {
-  submitItem(state, value){
-    axios.post('http://localhost:3000/data', Object.assign({}, value))
-  }
-};
-
 const actions = {
-  submitItem({commit}, value) {
-    commit('submitItem', value);
+  submitItem(state, value) {
+    return new Promise((resolve, reject) => {
+      axios.post('http://localhost:3000/data', value)
+        .then(response => {
+          resolve(response);
+        }, error => {
+          reject(error);
+        });
+    });
   },
 };
 export default {
-  mutations,
   actions,
 };

@@ -29,17 +29,18 @@ const mutations = {
   removeFromBasketOne(state, value) {
     const duplicatedProduct = state.basket.find(item => item.name === value.name);
     const newPrice = value.price / value.quantity;
+    if(value.quantity >= 1) {
+      state.basketQuantity -= 1;
+      duplicatedProduct.quantity -= 1;
+      duplicatedProduct.price = newPrice * duplicatedProduct.quantity;
+      state.totalPrice -= newPrice;
 
-    state.basketQuantity -= 1;
-    duplicatedProduct.quantity -= 1;
-    duplicatedProduct.price = newPrice * duplicatedProduct.quantity;
-    state.totalPrice -= newPrice;
-
-    store.state.products.find(item => {
-      if (item.name === value.name) {
-        value.quantity > 0 ? item.inStock += 1 : null;
-      }
-    });
+      store.state.products.find(item => {
+        if (item.name === value.name) {
+          value.quantity > 0 ? item.inStock += 1 : null;
+        }
+      });
+    }
   },
   removeFromBasketAll(state, value) {
     const duplicatedProduct = state.basket.find(item => item.name === value.name);

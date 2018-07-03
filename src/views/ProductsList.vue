@@ -1,5 +1,5 @@
 <template>
-  <main>
+  <main class="main">
     <Filters></Filters>
     <Pagination></Pagination>
     <div class="container">
@@ -33,18 +33,17 @@
 </script>
 
 <style lang="scss" scoped>
-  main {
+  .main {
     padding: 30px;
     position: relative;
-    h1 {
-      margin-bottom: 50px;
-    }
-    .container {
-      text-align: center;
-      margin: 0 auto;
-      max-width: 1200px;
-      display: flex;
-      justify-content: space-around;
-    }
   }
+
+  .container {
+    text-align: center;
+    margin: 0 auto;
+    max-width: 1200px;
+    display: flex;
+    justify-content: space-around;
+  }
+
 </style>

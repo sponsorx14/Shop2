@@ -6,8 +6,14 @@
     >
       {{ showFilters ? 'Hide filters' : 'Show filters'}}
     </button>
-    <transition enter-active-class="fadeIn" leave-active-class="fadeOut">
-      <div v-if="showFilters" class="main__filters">
+    <transition
+        enter-active-class="fadeIn"
+        leave-active-class="fadeOut"
+    >
+      <div
+          v-if="showFilters"
+          class="main__filters"
+      >
         <div class="main__filters main__filters--name">
           <input
               v-model="filterName"
@@ -24,7 +30,7 @@
                 type="checkbox"
                 class="main__filters--categories--checkbox"
             >
-            <span>Huawei</span>
+            <span class="main__filters--categories--span"> Huawei</span>
           </label>
           <label class="main__filters--categories--label">
             <input
@@ -33,7 +39,7 @@
                 type="checkbox"
                 class="main__filters--categories--checkbox"
             >
-            <span>Lenovo</span>
+            <span class="main__filters--categories--span">Lenovo</span>
           </label>
           <label class="main__filters--categories--label">
             <input
@@ -42,7 +48,7 @@
                 type="checkbox"
                 class="main__filters--categories--checkbox"
             >
-            <span>Iphone</span>
+            <span class="main__filters--categories--span">Iphone</span>
           </label>
           <label class="main__filters--categories--label">
             <input
@@ -51,7 +57,7 @@
                 type="checkbox"
                 class="main__filters--categories--checkbox"
             >
-            <span>Xiaomi</span>
+            <span class="main__filters--categories--span">Xiaomi</span>
           </label>
           <label class="main__filters--categories--label">
             <input
@@ -60,7 +66,7 @@
                 type="checkbox"
                 class="main__filters--categories--checkbox"
             >
-            <span>Nokia</span>
+            <span class="main__filters--categories--span">Nokia</span>
           </label>
           <label class="main__filters--categories--label">
             <input
@@ -69,7 +75,7 @@
                 type="checkbox"
                 class="main__filters--categories--checkbox"
             >
-            <span>Honor</span>
+            <span class="main__filters--categories--span">Honor</span>
           </label>
         </div>
         <div class="main__filters main__filters--price">
@@ -118,7 +124,7 @@
 
 <script>
   export default {
-    name: "Filters",
+    name: 'Filters',
     data() {
       return {
         showFilters: false
@@ -201,6 +207,7 @@
       display: block;
     }
   }
+
   @keyframes fadeOut {
     0% {
       transform: translateY(0);
@@ -217,6 +224,7 @@
   .fadeIn {
     animation: fadeIn 1s ease;
   }
+
   .fadeOut {
     animation: fadeOut 1s ease;
   }
@@ -234,9 +242,10 @@
     &:hover {
       transition: .5s;
       background-color: $light-yellow;
-      box-shadow: 0px 3px 10px 5px #97B1BF;
+      box-shadow: 0 3px 10px 5px #97B1BF;
     }
   }
+
   .main__filters {
     &--name {
       margin-bottom: 10px;
@@ -249,8 +258,9 @@
     }
     &--categories {
       padding: 10px 0;
-      &--label span {
+      &--label .main__filters--categories--span {
         transition: .3s;
+        user-select: none;
         display: inline-block;
         background: $grey2;
         padding: 15px 30px;
@@ -265,7 +275,7 @@
       }
       &--checkbox {
         display: none;
-        &:checked + span {
+        &:checked + .main__filters--categories--span {
           background-color: $yellow;
         }
       }

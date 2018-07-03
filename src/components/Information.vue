@@ -1,11 +1,11 @@
 <template>
   <div class="information">
-    <ul class="information__list">
+    <nav class="information__list">
       <router-link
           to="/"
           activeClass="active"
           class="information__list__item"
-          tag="li"
+          tag="a"
           exact
       >
         Home
@@ -14,7 +14,7 @@
           to="/basket"
           activeClass="active"
           class="information__list__item"
-          tag="li"
+          tag="a"
       >
         Basket
         ({{ basketQuantity }})
@@ -23,11 +23,11 @@
           to="/form"
           activeClass="active"
           class="information__list__item"
-          tag="li"
+          tag="a"
       >
         New item
       </router-link>
-    </ul>
+    </nav>
     <p class="information__total">
       Total:
       {{ totalPrice }}
@@ -38,7 +38,7 @@
 
 <script>
   export default {
-    name: "Information",
+    name: 'Information',
     computed: {
       totalPrice() {
         return this.$store.state.basketModule.totalPrice;
@@ -63,15 +63,17 @@
     justify-content: space-between;
     align-items: center;
     font-size: 20px;
-    box-shadow: 0px 10px 30px -10px rgba(0, 0, 0, 0.75);
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.75);
     &__list {
       margin: 0;
       padding: 10px;
       display: flex;
       &__item {
+        list-style: none;
+        color: $dark-grey;
+        text-decoration: none;
         padding: 10px 25px;
         margin-right: 5px;
-        list-style: none;
         background-color: $grey;
         cursor: pointer;
       }

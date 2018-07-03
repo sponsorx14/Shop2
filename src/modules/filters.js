@@ -54,7 +54,7 @@ const actions = {
 
 const getters = {
   getSortedProducts() {
-    const filter = store.state.products
+    return store.state.products
       .filter(item => {
         if (state.filterCheckboxes.length === 0) {
           return store.state.products;
@@ -98,7 +98,6 @@ const getters = {
           return 0;
         }
       });
-    return filter;
   },
 };
 

@@ -2,16 +2,15 @@
   <div class="basket">
     <h2>Your basket: </h2>
     <button
-      @click="resetBasket"
-      :class="[basketQuantity !== 0 ? '' : hideBasket]"
-      class="basket__button"
+        @click="resetBasket"
+        class="basket__button"
     >
       Remove all
     </button>
     <div
-      v-for="item in basket"
-      :class="[item.quantity <= 0 ? hideBasket : '']"
-      class="basket__product"
+        v-for="item in basket"
+        :class="{'basket__hide' : basketQuantity === 0 }"
+        class="basket__product"
     >
       <p>
         Name:
@@ -26,14 +25,14 @@
         {{ item.price }}zł
       </p>
       <button
-        @click="removeFromBasketOne(item)"
-        class="basket__button"
+          @click="removeFromBasketOne(item)"
+          class="basket__button"
       >
         Remove one
       </button>
       <button
-        @click="removeFromBasketAll(item)"
-        class="basket__button"
+          @click="removeFromBasketAll(item)"
+          class="basket__button"
       >
         Remove all
       </button>
@@ -50,25 +49,14 @@
       },
       basket() {
         return this.$store.state.basketModule.basket;
-      },
-      hideBasket() {
-        return 'basket__hide';
       }
     },
     methods: {
       removeFromBasketOne(item) {
-        this.$store.dispatch('removeFromBasketOne', {
-          name: item.name,
-          quantity: item.quantity,
-          price: item.price,
-        });
+        this.$store.dispatch('removeFromBasketOne', item);
       },
       removeFromBasketAll(item) {
-        this.$store.dispatch('removeFromBasketAll', {
-          id: item.id,
-          name: item.name,
-          quantity: item.quantity
-        });
+        this.$store.dispatch('removeFromBasketAll', item);
       },
       resetBasket() {
         this.$store.dispatch('resetBasket');

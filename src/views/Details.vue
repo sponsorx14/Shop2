@@ -1,20 +1,20 @@
 <template>
   <div class="main">
     <div
-      v-for="item in showDetails"
-      class="box"
+        v-for="item in showDetails"
+        class="box"
     >
       <router-link to="/">
         <i class="fas fa-arrow-circle-left"></i>
       </router-link>
       <a
-        :href="item.image"
-        target="_blank"
+          :href="item.image"
+          target="_blank"
       >
         <img
-          :src="item.image"
-          class="box__image"
-          alt=""
+            :src="item.image"
+            class="box__image"
+            :alt="item.name"
         >
       </a>
       <p class="box__name">
@@ -61,31 +61,32 @@
 
   .main {
     margin: 30px 0;
-    .box {
-      border: 2px solid $dark-white;
-      padding: 20px;
-      margin: 30px auto;
+  }
+
+  .box {
+    border: 2px solid $dark-white;
+    padding: 20px;
+    margin: 30px auto;
+    max-width: 600px;
+    border-radius: 20px;
+    .fas {
+      color: $grey2;
+      font-size: 50px;
+    }
+    &__image {
       max-width: 600px;
-      border-radius: 20px;
-      .fas {
-        color: $grey2;
-        font-size: 50px;
-      }
-      &__image {
-        max-width: 600px;
-      }
-      &__name {
-        font-size: 24px;
-      }
-      &__price {
-        font-size: 20px;
-      }
-      &__stock {
-        color: $deep-red;
-      }
-      &__details {
-        font-size: 20px;
-      }
+    }
+    &__name {
+      font-size: 24px;
+    }
+    &__price {
+      font-size: 20px;
+    }
+    &__stock {
+      color: $deep-red;
+    }
+    &__details {
+      font-size: 20px;
     }
   }
 

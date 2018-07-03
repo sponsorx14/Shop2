@@ -1,18 +1,25 @@
 <template>
   <div class="container">
     <form class="form" @submit="onSubmit" novalidate>
-      <label>Category:</label>
+      <label
+          for="form__select"
+          class="form__label"
+      >
+        Category:
+      </label>
+      <span
+          class="form--error"
+          v-if="submitted"
+      >
+        {{ incorrectCategory }}
+      </span>
       <select
           v-model="newItem.category"
           :class="{error: errors.category }"
           class="form__select"
+          id="form__select"
       >
-        <span
-            class="form--error"
-            v-if="submitted"
-        >
-        {{ incorrectCategory }}
-      </span>
+
         <option value="" disabled hidden></option>
         <option value="Huawei">Huawei</option>
         <option value="Lenovo">Lenovo</option>
@@ -21,7 +28,10 @@
         <option value="Nokia">Nokia</option>
         <option value="Honor">Honor</option>
       </select>
-      <label for="form__input--name">
+      <label
+          class="form__label"
+          for="form__input--name"
+      >
         Name:
       </label>
       <span
@@ -36,7 +46,10 @@
           :class="{error: errors.name }"
           id="form__input--name"
           type="text">
-      <label for="form__input--price">
+      <label
+          class="form__label"
+          for="form__input--price"
+      >
         Price:
       </label>
       <span
@@ -51,7 +64,10 @@
           :class="{error: errors.price }"
           id="form__input--price"
           type="number">
-      <label for="form__input--in-stock">
+      <label
+          class="form__label"
+          for="form__input--in-stock"
+      >
         In stock:
       </label>
       <span
@@ -66,7 +82,10 @@
           :class="{error: errors.inStock }"
           id="form__input--in-stock"
           type="number">
-      <label for="form__input--image">
+      <label
+          class="form__label"
+          for="form__input--image"
+      >
         Image URL:
       </label>
       <span
@@ -81,7 +100,10 @@
           :class="{error: errors.image }"
           id="form__input--image"
           type="text">
-      <label for="form__input--details--screen">
+      <label
+          class="form__label"
+          for="form__input--details--screen"
+      >
         Screen size:
       </label>
       <span
@@ -91,12 +113,15 @@
         {{ incorrectScreen }}
       </span>
       <input
-          v-model="newItem.screen"
+          v-model="newItem.details.screen"
           class="form__input--details--screen"
           :class="{error: errors.screen }"
           id="form__input--details--screen"
           type="text">
-      <label for="form__input--details--memory">
+      <label
+          class="form__label"
+          for="form__input--details--memory"
+      >
         Memory:
       </label>
       <span
@@ -106,12 +131,15 @@
         {{ incorrectMemory }}
       </span>
       <input
-          v-model="newItem.memory"
+          v-model="newItem.details.memory"
           class="form__input--details--memory"
           :class="{error: errors.memory }"
           id="form__input--details--memory"
           type="text">
-      <label for="form__input--details--system">
+      <label
+          class="form__label"
+          for="form__input--details--system"
+      >
         System:
       </label>
       <span
@@ -121,7 +149,7 @@
         {{ incorrectSystem }}
       </span>
       <input
-          v-model="newItem.system"
+          v-model="newItem.details.system"
           class="form__input--details--system"
           :class="{error: errors.system }"
           id="form__input--details--system"
@@ -137,7 +165,8 @@
 
 <script>
   import _ from 'lodash';
-  import { uuid } from 'vue-uuid'
+  import {uuid} from 'vue-uuid'
+
   export default {
     name: "Form",
     data() {
@@ -161,17 +190,18 @@
       }
     },
     methods: {
-      validateUrl(string){
+      validateUrl(string) {
         let validUrl = string.match(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g);
-        validUrl !== null ? this.validUrl = true : this.validUrl = false;
+        this.validUrl = validUrl !== null;
       },
       onSubmit(event) {
         event.preventDefault();
         this.submitted = true;
-        // this.validateForm();
+        this.validateForm();
         if (_.isEmpty(this.errors)) {
-          this.$store.dispatch('submitItem', this.newItem);
-          this.$router.push('/')
+          this.$store.dispatch('submitItem', this.newItem).then(() => {
+            this.$router.push('/');
+          });
         }
       },
       validateForm() {
@@ -179,9 +209,9 @@
         this.validateUrl(this.newItem.image);
 
         if (!this.newItem.category) {
-          errors.category = 'Pick one of categories';
+          errors.category = 'Choose one of categories';
         }
-        if (!this.newItem.name || this.newItem.name.length < 3) {
+        if (!this.newItem.name) {
           errors.name = 'Enter a valid name';
         }
         if (!this.newItem.price) {
@@ -193,13 +223,13 @@
         if (!this.newItem.image || !this.validUrl) {
           errors.image = 'Enter a valid image Url';
         }
-        if (!this.newItem.screen) {
+        if (!this.newItem.details.screen) {
           errors.screen = 'Enter a valid screen size';
         }
-        if (!this.newItem.memory) {
+        if (!this.newItem.details.memory) {
           errors.memory = 'Enter a valid memory information';
         }
-        if (!this.newItem.system) {
+        if (!this.newItem.details.system) {
           errors.system = 'Enter a valid system information';
         }
         this.errors = errors;
@@ -248,48 +278,50 @@
   .container {
     max-width: 1200px;
     margin: 0 auto;
-    .form {
-      display: flex;
-      flex-direction: column;
-      max-width: 450px;
-      margin: 0 auto;
-      label {
-        margin: 10px 0;
-        text-align: left;
-      }
-      [class^='form__input'],
-      &__select {
-        padding: 10px;
+  }
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    max-width: 450px;
+    margin: 0 auto;
+    &__label {
+      margin: 10px 0;
+      text-align: left;
+    }
+    [class^='form__input'],
+    &__select {
+      padding: 10px;
+      transition: .3s;
+      margin-bottom: 10px;
+      &:focus {
         transition: .3s;
-        margin-bottom: 10px;
-        &:focus {
-          transition: .3s;
-          border-color: $blue;
-        }
-      }
-      &__button-submit {
-        max-width: 300px;
-        padding: 15px 30px;
-        margin: 30px auto;
-        border: 0;
-        outline: none;
-        background-color: $yellow;
-        cursor: pointer;
-        color: $white;
-        font-size: 20px;
-        transition: .5s;
-        &:hover {
-          transition: .5s;
-          background-color: $light-yellow;
-          box-shadow: 0px 3px 10px 5px #97B1BF;
-        }
-      }
-      &--error{
-        text-align: left;
-        color: $deep-red;
+        border-color: $blue;
       }
     }
+    &__button-submit {
+      max-width: 300px;
+      padding: 15px 30px;
+      margin: 30px auto;
+      border: 0;
+      outline: none;
+      background-color: $yellow;
+      cursor: pointer;
+      color: $white;
+      font-size: 20px;
+      transition: .5s;
+      &:hover {
+        transition: .5s;
+        background-color: $light-yellow;
+        box-shadow: 0px 3px 10px 5px #97B1BF;
+      }
+    }
+    &--error {
+      text-align: left;
+      color: $deep-red;
+    }
   }
+
   .error {
     border: 1px solid red;
   }
