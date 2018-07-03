@@ -15,6 +15,7 @@
   import Filters from '../components/Filters.vue';
   import Modal from '../components/Modal.vue';
   import Pagination from '../components/Pagination.vue';
+  import store from '../store';
 
   export default {
     name: 'ProductList',
@@ -24,6 +25,10 @@
       Modal,
       Pagination
     },
+    beforeRouteEnter(to, from, next) {
+      store.dispatch('fetchData')
+        .then(() => next())
+    }
   };
 </script>
 

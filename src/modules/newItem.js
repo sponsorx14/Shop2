@@ -1,14 +1,14 @@
-import store from '../store';
+import axios from 'axios';
 
 const mutations = {
   submitItem(state, value){
-    store.state.products.push(value)
+    axios.post('http://localhost:3000/data', Object.assign({}, value))
   }
 };
 
 const actions = {
   submitItem({commit}, value) {
-    commit('submitItem', value)
+    commit('submitItem', value);
   },
 };
 export default {

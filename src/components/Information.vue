@@ -46,7 +46,7 @@
       basketQuantity() {
         return this.$store.state.basketModule.basketQuantity;
       }
-    }
+    },
   };
 </script>
 

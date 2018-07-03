@@ -137,7 +137,7 @@
 
 <script>
   import _ from 'lodash';
-  import {uuid } from 'vue-uuid'
+  import { uuid } from 'vue-uuid'
   export default {
     name: "Form",
     data() {
@@ -148,7 +148,7 @@
           name: '',
           price: null,
           inStock: null,
-          image: null,
+          image: '',
           details: {
             screen: null,
             memory: null,
@@ -156,14 +156,19 @@
           },
         },
         errors: {},
-        submitted: false
+        submitted: false,
+        validUrl: false
       }
     },
     methods: {
+      validateUrl(string){
+        let validUrl = string.match(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g);
+        validUrl !== null ? this.validUrl = true : this.validUrl = false;
+      },
       onSubmit(event) {
         event.preventDefault();
         this.submitted = true;
-        this.validateForm();
+        // this.validateForm();
         if (_.isEmpty(this.errors)) {
           this.$store.dispatch('submitItem', this.newItem);
           this.$router.push('/')
@@ -171,10 +176,12 @@
       },
       validateForm() {
         const errors = {};
+        this.validateUrl(this.newItem.image);
+
         if (!this.newItem.category) {
           errors.category = 'Pick one of categories';
         }
-        if (!this.newItem.name) {
+        if (!this.newItem.name || this.newItem.name.length < 3) {
           errors.name = 'Enter a valid name';
         }
         if (!this.newItem.price) {
@@ -183,7 +190,7 @@
         if (!this.newItem.inStock) {
           errors.inStock = 'Enter value of stock';
         }
-        if (!this.newItem.image) {
+        if (!this.newItem.image || !this.validUrl) {
           errors.image = 'Enter a valid image Url';
         }
         if (!this.newItem.screen) {
